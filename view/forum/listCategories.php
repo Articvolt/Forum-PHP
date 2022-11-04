@@ -4,7 +4,7 @@ $categories = $result["data"]['categories'];
     
 ?>
 
-<h1>liste topics</h1>
+<h1>liste des catégories</h1>
 
 <?php
 foreach($categories as $category ){

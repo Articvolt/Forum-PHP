@@ -5,7 +5,7 @@
     use App\DAO;
     use Model\Managers\PostManager;
 
-    class PostManager extends Manager{
+    class PostsManager extends Manager{
 
         protected $className = "Model\Entities\Post";
         protected $tableName = "post";

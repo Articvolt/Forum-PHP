@@ -5,7 +5,7 @@
     use App\DAO;
     use Model\Managers\UserManager;
 
-    class UserManager extends Manager{
+    class UsersManager extends Manager{
 
         protected $className = "Model\Entities\User";
         protected $tableName = "user";

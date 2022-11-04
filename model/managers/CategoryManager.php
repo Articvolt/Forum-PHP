@@ -5,7 +5,7 @@
     use App\DAO;
     use Model\Managers\CategoryManager;
 
-    class CategoryManager extends Manager{
+    class CategoriesManager extends Manager{
 
         protected $className = "Model\Entities\Category";
         protected $tableName = "category";
