@@ -16,19 +16,13 @@
             $this->hydrate($data);        
         }
  
-        /**
-         * Get the value of id
-         */ 
+// GETTER ID
         public function getId()
         {
                 return $this->id;
         }
 
-        /**
-         * Set the value of id
-         *
-         * @return  self
-         */ 
+// SETTER ID
         public function setId($id)
         {
                 $this->id = $id;
@@ -36,19 +30,13 @@
                 return $this;
         }
 
-        /**
-         * Get the value of title
-         */ 
+// GETTER TITLE
         public function getTitle()
         {
                 return $this->title;
         }
 
-        /**
-         * Set the value of title
-         *
-         * @return  self
-         */ 
+// SETTER TITLE
         public function setTitle($title)
         {
                 $this->title = $title;
@@ -56,30 +44,25 @@
                 return $this;
         }
 
-        
+// GETTER DATEFORMAT DATETOPIC   
         public function getDateTopic(){
             $formattedDate = $this->dateTopic->format("d/m/Y, H:i:s");
             return $formattedDate;
         }
-        
+  
+// SETTER DATEFORMAT DATETOPIC
         public function setDateTopic($date){
             $this->dateTopic = new \DateTime($date);
             return $this;
         }
 
-        /**
-         * Get the value of closed
-         */ 
+// GETTER CLOSED
         public function getClosed()
         {
                 return $this->closed;
         }
         
-        /**
-         * Set the value of closed
-         *
-         * @return  self
-         */ 
+// SETTER CLOSED 
         public function setClosed($closed)
         {
                 $this->closed = $closed;
@@ -87,19 +70,13 @@
                 return $this;
         }
 
-        /**
-         * Get the value of user
-         */ 
+// GETTER USER
         public function getUser()
         {
                 return $this->user;
         }
         
-        /**
-         * Set the value of user
-         *
-         * @return  self
-         */ 
+// SETTER USER
         public function setUser($user)
         {
                 $this->user = $user;
@@ -107,17 +84,14 @@
                 return $this;
         } 
 
-        /**
-         * Get the value of category
-         */ 
+// GETTER CATEGORY
         public function getCategory()
         {
                 return $this->category;
         }
         
+// SETTER CATEGORY
         /**
-         * Set the value of category
-         *
          * @return  self
          */ 
         public function setCategory($category)
