@@ -23,6 +23,7 @@
 			// on créé le chemin vers la classe
 			// on utilise DS car plus propre et meilleure portabilité entre les différents systèmes (windows/linux) 
 
+			// implode -> rassemble les éléments d'un tableau en une chaîne
 			$path = strtolower(implode(DS, $parts));
 			//$path = 'model/manager'
 			$file = $className.'.php';

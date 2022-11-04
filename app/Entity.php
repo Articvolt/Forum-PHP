@@ -3,6 +3,8 @@
 
     abstract class Entity{
 
+// hydrate : processus de "remplissage" d'une structure d'objet avec des données.
+
         protected function hydrate($data){
 
             foreach($data as $field => $value){

@@ -1,8 +1,11 @@
 <?php
     namespace App;
 
-    define('DS', DIRECTORY_SEPARATOR); // le caractère séparateur de dossier (/ ou \)
-    // meilleure portabilité sur les différents systêmes.
+// define -> définit une constante (const)
+
+    define('DS', DIRECTORY_SEPARATOR); // le caractère séparateur de dossier (/ ou \) |  meilleure portabilité sur les différents systêmes. 
+    // "__FILE__" -> constante qui renvoie le chemin complet et le nom d'un fichier PHP en cours d'éxecution.
+    // DS -> 
     define('BASE_DIR', dirname(__FILE__).DS); // pour se simplifier la vie
     define('VIEW_DIR', BASE_DIR."view/");     //le chemin où se trouvent les vues
     define('PUBLIC_DIR', "/public");     //le chemin où se trouvent les fichiers publics (CSS, JS, IMG)
@@ -19,7 +22,10 @@
     //et on intègre la classe Session qui prend la main sur les messages en session
     use App\Session as Session;
 
+
 //---------REQUETE HTTP INTERCEPTEE-----------
+
+
     $ctrlname = DEFAULT_CTRL;//on prend le controller par défaut
     //ex : index.php?ctrl=home
     if(isset($_GET['ctrl'])){
@@ -47,7 +53,9 @@
     //ex : HomeController->users(null)
     $result = $ctrl->$action($id);
     
+
     /*--------CHARGEMENT PAGE--------*/
+    
     
     if($action == "ajax"){//si l'action était ajax
         echo $result;//on affiche directement le return du contrôleur (càd la réponse HTTP sera uniquement celle-ci)

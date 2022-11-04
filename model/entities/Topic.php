@@ -7,9 +7,10 @@
 
         private $id;
         private $title;
-        private $user;
-        private $creationdate;
+        private $dateTopic;
         private $closed;
+        private $category;
+        private $user;
 
         public function __construct($data){         
             $this->hydrate($data);        
@@ -55,33 +56,14 @@
                 return $this;
         }
 
-        /**
-         * Get the value of user
-         */ 
-        public function getUser()
-        {
-                return $this->user;
-        }
-
-        /**
-         * Set the value of user
-         *
-         * @return  self
-         */ 
-        public function setUser($user)
-        {
-                $this->user = $user;
-
-                return $this;
-        }
-
-        public function getCreationdate(){
-            $formattedDate = $this->creationdate->format("d/m/Y, H:i:s");
+        
+        public function getDateTopic(){
+            $formattedDate = $this->dateTopic->format("d/m/Y, H:i:s");
             return $formattedDate;
         }
-
-        public function setCreationdate($date){
-            $this->creationdate = new \DateTime($date);
+        
+        public function setDateTopic($date){
+            $this->dateTopic = new \DateTime($date);
             return $this;
         }
 
@@ -92,7 +74,7 @@
         {
                 return $this->closed;
         }
-
+        
         /**
          * Set the value of closed
          *
@@ -101,7 +83,47 @@
         public function setClosed($closed)
         {
                 $this->closed = $closed;
-
+                
                 return $this;
         }
-    }
+
+        /**
+         * Get the value of user
+         */ 
+        public function getUser()
+        {
+                return $this->user;
+        }
+        
+        /**
+         * Set the value of user
+         *
+         * @return  self
+         */ 
+        public function setUser($user)
+        {
+                $this->user = $user;
+        
+                return $this;
+        } 
+
+        /**
+         * Get the value of category
+         */ 
+        public function getCategory()
+        {
+                return $this->category;
+        }
+        
+        /**
+         * Set the value of category
+         *
+         * @return  self
+         */ 
+        public function setCategory($category)
+        {
+                $this->category = $category;
+        
+                return $this;
+        }
+}
