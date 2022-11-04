@@ -8,8 +8,7 @@ $categories = $result["data"]['categories'];
 
 <?php
 foreach($categories as $category ){
-
     ?>
-    <p><?=$category->getLabel()?></p>
+    <p><a href="#"><?=$category->getLabel()?></a></p>
     <?php
 }
