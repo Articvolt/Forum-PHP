@@ -11,7 +11,7 @@
         protected $tableName = "topic";
 
 
-        public function __construct(){
+        public function __construct(string $title,string $dateTopic,string $closed){
             parent::connect();
         }
 
