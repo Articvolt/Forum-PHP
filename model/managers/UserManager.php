@@ -11,7 +11,7 @@
         protected $tableName = "user";
 
 
-        public function __construct(string $pseudonyme, string $email, string $password, string $dateCreate, string $role){
+        public function __construct(){
             parent::connect();
         }
 

@@ -3,15 +3,13 @@
     
     use App\Manager;
     use App\DAO;
-    use Model\Managers\TopicManager;
 
-    class TopicsManager extends Manager{
+    class TopicManager extends Manager{
 
         protected $className = "Model\Entities\Topic";
         protected $tableName = "topic";
 
-
-        public function __construct(string $title,string $dateTopic,string $closed){
+        public function __construct(){
             parent::connect();
         }
 
