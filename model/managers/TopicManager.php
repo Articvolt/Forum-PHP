@@ -13,9 +13,8 @@
             parent::connect();
         }
 
-        public function getTopicsByIdCategory($id){
+        public function getTopicsByIdCategory($id) {
             parent::connect();
-
             $sql ="
             SELECT * 
                 FROM ".$this->tableName." t
