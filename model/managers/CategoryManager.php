@@ -13,5 +13,13 @@
         {
             parent::connect();
         }
-
+        
+        public function getTopics(){
+            $sql = "
+                SELECT *
+                FROM ".$this->tableName." c
+                INNER JOIN topic t ON t.category_id = c.id_category
+            ";
+            
+        }
     }

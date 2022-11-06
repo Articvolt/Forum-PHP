@@ -17,10 +17,10 @@
             parent::connect();
 
             $sql ="
-            SELECT t.title, t.category_id 
-            FROM topic t
-            INNER JOIN category c ON c.id_category = t.category_id
-            WHERE t.category_id = :id;
+            SELECT * 
+                FROM ".$this->tableName." t
+                INNER JOIN category c on t.category_id = c.id_category
+                WHERE t.category_id = :id
             ";
             
             return $this->getMultipleResults(

@@ -34,13 +34,16 @@
 
         public function listTopicsByIdCategory($id){
             $topicManager = new TopicManager();
+            $categoryManager = new CategoryManager();
 
 
             return [
                 "view" => VIEW_DIR."forum/listTopicsByIdCategory.php",
                 "data" => [
-                    "topics" => $topicManager->findOneById($id)
+                    "topics" => $topicManager->getTopicsByIdCategory($id),
+                    "category" => $categoryManager->findOneById($id)
                 ]
             ];  
         }
+
     }
