@@ -4,7 +4,7 @@
 
     use App\Entity;
 
-    //  le mot clé "final pour" les classes empêche l'heritage
+    //  le mot clé "FINAL" pour les classes empêche l'heritage.
     final class Category extends Entity{
 
         private $id;

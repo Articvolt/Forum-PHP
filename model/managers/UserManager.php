@@ -16,7 +16,7 @@
         protected $tableName = "user";
 
         // constuct structuré par la classe parent "MANAGER" et connecté à la base de donnée.
-        public function __construct(){
+        public function __construct() {
             parent::connect();
         }
 

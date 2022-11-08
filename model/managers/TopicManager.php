@@ -16,7 +16,7 @@
         protected $tableName = "topic";
 
         // constuct structuré par la classe parent "MANAGER" et connecté à la base de donnée.
-        public function __construct(){
+        public function __construct() {
             parent::connect();
         }
 
@@ -36,31 +36,31 @@
         }
 
 // FONCTION POUR AJOUTER UN TOPIC
-        public function addTopic() {
-            // lie à la catégorie actuelle
-            $categoryManager = new CategoryManager();
-            $idCategory =$category->getId();
-            // filtres pour la sécurité du formulaire
-            $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $content = filter_input(INPUT_POST, "content", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            // renvoi à un user fixe (temporaire)
-            $userId= 1;
+        // public function addTopic() {
+        //     // lie à la catégorie actuelle
+        //     $categoryManager = new CategoryManager();
+        //     $idCategory =$category->getId();
+        //     // filtres pour la sécurité du formulaire
+        //     $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        //     $content = filter_input(INPUT_POST, "content", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        //     // renvoi à un user fixe (temporaire)
+        //     $userId= 1;
 
-            if($idCategory && $title && $content) {
+            // if($idCategory && $title && $content) {
 
-                $newTopic=["title"=>$title,"categorie_id"=>$idCategory, "user_id"=>$userId];
+            //     $newTopic=["title"=>$title,"categorie_id"=>$idCategory, "user_id"=>$userId];
 
-                $newTopicId = $this->add($newTopic);
+            //     $newTopicId = $this->add($newTopic);
 
-                // connection au manager POST
-                $postManager = new PostManager;
+            //     // connection au manager POST
+            //     $postManager = new PostManager;
 
-                $newPost=["content"=>$content, "topic_id"=>$newTopicId, "user_id"=>$userId];
-                //lien avec le manager POST
-                $postManager->add($newPost);
+            //     $newPost=["content"=>$content, "topic_id"=>$newTopicId, "user_id"=>$userId];
+            //     //lien avec le manager POST
+            //     $postManager->add($newPost);
 
-                return $newTopicId;
+            //     return $newTopicId;
 
-            }
-        }
+            // }
+        //}
     }
