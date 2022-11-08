@@ -12,6 +12,7 @@
         
         public function __construct($data){ 
         // hydrater un objet permet de fournir des valeurs à ses attributs. La fonction prend comme argument, un tableau associatif ($data)
+                $this->hydrate($data);
         }
  
 // GETTER ID

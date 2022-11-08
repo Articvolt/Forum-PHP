@@ -1,7 +1,5 @@
 <?php
-
-$categories = $result["data"]['categories'];
-    
+$categories = $result["data"]['categories']; 
 ?>
 
 <h1>liste des catégories</h1>

@@ -22,6 +22,7 @@
         
         }
 
+// AFFICHAGE DES CATEGORIES
         public function listCategories(){
                 
             $categoryManager = new CategoryManager();
@@ -34,6 +35,7 @@
             ];  
          }
 
+// AFFICHAGE DES TOPICS PAR CATEGORIE CIBLEE
         public function listTopicsByIdCategory($id){
             $topicManager = new TopicManager();
             $categoryManager = new CategoryManager();
