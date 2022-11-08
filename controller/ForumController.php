@@ -9,7 +9,7 @@
     use Model\Managers\PostManager;
     use Model\Managers\CategoryManager;
     
-    // la classe "ForumController" va hériter à toutes les méthodes et proprriétés de la classe "AbstractController"
+    // la classe "ForumController" va hériter à toutes les méthodes et propriétés de la classe "AbstractController"
     // l'opérateur "implement" implémente les méthodes(fonctions) de l'interface "ContollerInterface"
     class ForumController extends AbstractController implements ControllerInterface{
 
