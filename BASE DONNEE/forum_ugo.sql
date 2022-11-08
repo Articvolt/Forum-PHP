@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`id_category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table forum_ugo.category : ~0 rows (environ)
+-- Listage des données de la table forum_ugo.category : ~2 rows (environ)
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
 INSERT INTO `category` (`id_category`, `label`) VALUES
 	(1, 'SCP'),
@@ -43,15 +43,17 @@ CREATE TABLE IF NOT EXISTS `post` (
   KEY `topic_id` (`topic_id`),
   CONSTRAINT `FK_post_topic` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id_topic`),
   CONSTRAINT `FK_post_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table forum_ugo.post : ~0 rows (environ)
+-- Listage des données de la table forum_ugo.post : ~6 rows (environ)
 /*!40000 ALTER TABLE `post` DISABLE KEYS */;
 INSERT INTO `post` (`id_post`, `datePost`, `text`, `user_id`, `topic_id`) VALUES
 	(1, '2022-11-04 11:28:34', 'sujet classifié', 1, 1),
 	(2, '2022-11-04 11:29:23', 'sujet classifié erroné', 1, 2),
 	(3, '2022-11-04 11:30:23', 'sujet classifié décryptage', 1, 2),
-	(4, '2022-11-04 11:31:23', 'sujet classifié décryptage', 1, 1);
+	(4, '2022-11-04 11:31:23', 'sujet classifié décryptage', 1, 1),
+	(5, '2022-11-04 11:28:34', 'sujet classifié', 1, 3),
+	(6, '2022-11-04 11:29:23', 'sujet classifié erroné', 1, 4);
 /*!40000 ALTER TABLE `post` ENABLE KEYS */;
 
 -- Listage de la structure de la table forum_ugo. topic
@@ -59,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `id_topic` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `dateTopic` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `closed` tinyint(1) DEFAULT '0',
+  `closed` tinyint(1) DEFAULT NULL,
   `category_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id_topic`),
@@ -67,13 +69,15 @@ CREATE TABLE IF NOT EXISTS `topic` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `FK_topic_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id_category`),
   CONSTRAINT `FK_topic_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table forum_ugo.topic : ~0 rows (environ)
+-- Listage des données de la table forum_ugo.topic : ~4 rows (environ)
 /*!40000 ALTER TABLE `topic` DISABLE KEYS */;
 INSERT INTO `topic` (`id_topic`, `title`, `dateTopic`, `closed`, `category_id`, `user_id`) VALUES
 	(1, 'SCP0001', '2022-11-04 11:28:15', 0, 1, 1),
-	(2, 'SCP852', '2022-11-04 11:29:09', 0, 1, 1);
+	(2, 'SCP852', '2022-11-04 11:29:09', 0, 1, 1),
+	(3, 'level 3', '2022-11-08 09:24:15', 0, 2, 1),
+	(4, 'level 99', '2022-11-08 09:24:33', 0, 2, 1);
 /*!40000 ALTER TABLE `topic` ENABLE KEYS */;
 
 -- Listage de la structure de la table forum_ugo. user
@@ -87,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table forum_ugo.user : ~0 rows (environ)
+-- Listage des données de la table forum_ugo.user : ~1 rows (environ)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id_user`, `pseudonyme`, `email`, `password`, `dateCreate`, `role`) VALUES
 	(1, 'ClassD', 'testmail', 'password', '2022-11-04 11:26:08', 'user');

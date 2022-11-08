@@ -21,6 +21,7 @@
             SELECT * 
                 FROM ".$this->tableName." p
                 WHERE p.topic_id = :id
+                ORDER BY datePost ASC
             ";
             
             return $this->getMultipleResults(

@@ -31,7 +31,8 @@
 // FONCTION POUR AJOUTER UN TOPIC
         public function addTopic() {
             // lie à la catégorie actuelle
-            $idCategory = $_GET["id"];
+            $categoryManager = new CategoryManager();
+            $idCategory =$category->getId();
             // filtres pour la sécurité du formulaire
             $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $content = filter_input(INPUT_POST, "content", FILTER_SANITIZE_FULL_SPECIAL_CHARS);

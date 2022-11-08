@@ -70,7 +70,7 @@
         }
         
 // AJOUT D'UN TOPIC
-        public function addTopic() {
+        public function addTopic($id) {
 
             $topicManager = new TopicManager();
 
