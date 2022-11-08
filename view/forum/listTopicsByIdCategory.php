@@ -9,13 +9,11 @@ $category = $result["data"]['category'];
 foreach($topics as $topic){
     ?>
     <p>
-        <a href="#">
+        <a href="index.php?ctrl=forum&action=listPostsByIdTopic&id=<?=$topic->getId()?>">
             <?= $topic->getTitle()." (".$topic->getDateTopic().")" ?>
         </a>
     </p>
     <?php
 }
-
-
 
   

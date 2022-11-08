@@ -49,4 +49,21 @@
             ];  
         }
 
-    }
+    
+
+// AFFICHAGE DES TOPICS PAR CATEGORIE CIBLEE
+        public function listPostsByIdTopic($id){
+            $postManager = new PostManager();
+            $topicManager = new TopicManager();
+
+            return [
+                "view" => VIEW_DIR."forum/listPostsByIdTopic.php",
+                "data" => [
+                    "posts" => $postManager->getPostsByIdTopic($id),
+                    "topic" => $topicManager->findOneById($id)
+                ]
+            ];  
+        }
+}
+
+
