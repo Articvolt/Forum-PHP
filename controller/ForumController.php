@@ -31,6 +31,7 @@
         
         }
 
+        
 // AFFICHAGE DES CATEGORIES
         public function listCategories(){
              
@@ -44,6 +45,7 @@
                 ]
             ];  
          }
+
 
 // AFFICHAGE DES TOPICS PAR CATEGORIE CIBLEE
         public function listTopicsByIdCategory($id){
@@ -62,7 +64,6 @@
         }
 
     
-
 // AFFICHAGE DES POSTS PAR TOPIC CIBLEE
         public function listPostsByIdTopic($id){
 
