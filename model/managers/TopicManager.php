@@ -18,7 +18,6 @@
             $sql ="
             SELECT * 
                 FROM ".$this->tableName." t
-                INNER JOIN category c on t.category_id = c.id_category
                 WHERE t.category_id = :id
             ";
             

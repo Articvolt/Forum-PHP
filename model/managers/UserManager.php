@@ -3,9 +3,8 @@
     
     use App\Manager;
     use App\DAO;
-    use Model\Managers\UserManager;
 
-    class UsersManager extends Manager{
+    class UserManager extends Manager{
 
         protected $className = "Model\Entities\User";
         protected $tableName = "user";

@@ -40,7 +40,6 @@
             $topicManager = new TopicManager();
             $categoryManager = new CategoryManager();
 
-
             return [
                 "view" => VIEW_DIR."forum/listTopicsByIdCategory.php",
                 "data" => [

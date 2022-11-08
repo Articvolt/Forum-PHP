@@ -7,11 +7,10 @@ $category = $result["data"]['category'];
 
 <?php
 foreach($topics as $topic){
-
     ?>
     <p>
         <a href="#">
-            <?php $topic->getTitle()." (".$topic->getDateTopic().")" ?>
+            <?= $topic->getTitle()." (".$topic->getDateTopic().")" ?>
         </a>
     </p>
     <?php
