@@ -13,12 +13,15 @@
          * @param array $order an array with field and order option
          * @return Collection a collection of objects hydrated by DAO, which are results of the request sent
          */
+
+// FONCTION QUI RECHERCHE TOUTE LES LIGNES DE LA TABLE
         public function findAll($order = null){
 
             $orderQuery = ($order) ?                 
                 "ORDER BY ".$order[0]. " ".$order[1] :
                 "";
 
+            // requête SQL
             $sql = "SELECT *
                     FROM ".$this->tableName." a
                     ".$orderQuery;
@@ -29,8 +32,10 @@
             );
         }
        
+// FONCTION QUI SELECTIONNE UNE LIGNE D'UNE TABLE PAR RAPPORT A UN ID
         public function findOneById($id){
 
+            // requête SQL
             $sql = "SELECT *
                     FROM ".$this->tableName." a
                     WHERE a.id_".$this->tableName." = :id
@@ -44,12 +49,13 @@
 
         //$data = ['username' => 'Squalli', 'password' => 'dfsyfshfbzeifbqefbq', 'email' => 'sql@gmail.com'];
 
+// FONCTION QUI AJOUTE DES DONNEES A UNE TABLE 
         public function add($data){
-            //$keys = ['username' , 'password', 'email']
+            // EXEMPLE: $keys = ['username' , 'password', 'email']
             $keys = array_keys($data);
-            //$values = ['Squalli', 'dfsyfshfbzeifbqefbq', 'sql@gmail.com']
+            // EXEMPLE: $values = ['Squalli', 'dfsyfshfbzeifbqefbq', 'sql@gmail.com']
             $values = array_values($data);
-            //"username,password,email"
+            // EXEMPLE: "username,password,email"
             $sql = "INSERT INTO ".$this->tableName."
                     (".implode(',', $keys).") 
                     VALUES
@@ -67,6 +73,7 @@
             }
         }
         
+// FONCTION QUI SUPPRIME UN LIGNE DE DONNEES DANS UNE TABLE
         public function delete($id){
             $sql = "DELETE FROM ".$this->tableName."
                     WHERE id_".$this->tableName." = :id
@@ -81,6 +88,7 @@
             }
         }
         
+// FONCTION QUI AFFICHE PLUSIEURS RESULTATS
         protected function getMultipleResults($rows, $class){
 
             if(is_iterable($rows)){

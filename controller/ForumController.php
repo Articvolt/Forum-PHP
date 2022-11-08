@@ -1,10 +1,13 @@
 <?php
-
+    // NAMESPACE : permet de grouper et d'identifier un ensemble d'éléments logiques par un programme.
     namespace Controller;
 
+    //relie à APP qui automatise le forum
     use App\Session;
     use App\AbstractController;
     use App\ControllerInterface;
+
+    // relie à tout les controllers
     use Model\Managers\TopicManager;
     use Model\Managers\PostManager;
     use Model\Managers\CategoryManager;
@@ -15,8 +18,10 @@
 
         
         public function index(){
-          
+
+            // variable qui relie à la classe 
             $topicManager = new TopicManager();
+
              return [
                  "view" => VIEW_DIR."forum/listTopics.php",
                  "data" => [
@@ -28,7 +33,8 @@
 
 // AFFICHAGE DES CATEGORIES
         public function listCategories(){
-                
+             
+            // variable qui relie à la classe 
             $categoryManager = new CategoryManager();
 
             return [
@@ -41,6 +47,8 @@
 
 // AFFICHAGE DES TOPICS PAR CATEGORIE CIBLEE
         public function listTopicsByIdCategory($id){
+
+            // variable qui relie à la classe 
             $topicManager = new TopicManager();
             $categoryManager = new CategoryManager();
 
@@ -57,9 +65,12 @@
 
 // AFFICHAGE DES POSTS PAR TOPIC CIBLEE
         public function listPostsByIdTopic($id){
+
+            // variable qui relie à la classe 
             $postManager = new PostManager();
             $topicManager = new TopicManager();
 
+            // renvoie 
             return [
                 "view" => VIEW_DIR."forum/listPostsByIdTopic.php",
                 "data" => [
