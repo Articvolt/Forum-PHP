@@ -15,10 +15,14 @@
 
         
         public function index(){
-
-            return [
-                "view" => VIEW_DIR."forum/listCategories.php"
-            ];
+          
+            $topicManager = new TopicManager();
+             return [
+                 "view" => VIEW_DIR."forum/listTopics.php",
+                 "data" => [
+                     "topics" => $topicManager->findAll(["dateTopic", "DESC"]),
+                 ]
+             ];
         
         }
 
@@ -30,7 +34,7 @@
             return [
                 "view" => VIEW_DIR."forum/listCategories.php",
                 "data" => [
-                    "categories" => $categoryManager->findAll()
+                    "categories" => $categoryManager->findAll(["label","ASC"])
                 ]
             ];  
          }
@@ -51,7 +55,7 @@
 
     
 
-// AFFICHAGE DES TOPICS PAR CATEGORIE CIBLEE
+// AFFICHAGE DES POSTS PAR TOPIC CIBLEE
         public function listPostsByIdTopic($id){
             $postManager = new PostManager();
             $topicManager = new TopicManager();
@@ -64,6 +68,23 @@
                 ]
             ];  
         }
-}
+        
+// AJOUT D'UN TOPIC
+        public function addTopic() {
 
+            $topicManager = new TopicManager();
 
+            
+        }
+
+       
+
+// AJOUT D'UN POST SI TOPIC OUVERT
+        public function addPost($id) {
+
+            $postManager = new PostManager();
+
+           
+        }
+
+    }

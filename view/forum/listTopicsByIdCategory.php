@@ -15,5 +15,25 @@ foreach($topics as $topic){
     </p>
     <?php
 }
+?>
 
+<!-- AJOUT D'UN FORMULAIRE -->
+
+<h2>Ajout d'un topic</h2>
+
+    <form action="index.php?ctrl=forum&action=addTopic&id=<?=$category->getId()?>" method="post">
+        <label>
+            Titre: <br>
+            <input type="text" name="title" required>
+        </label>
+    <br>
+        <label>
+            Message: <br>
+            <input type="text" name="content" required>
+        </label>
+    <br>
+        <label>
+            <input type="submit"  value="submit">
+        </label>
+    </form>
   
