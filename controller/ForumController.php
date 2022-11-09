@@ -113,6 +113,7 @@ use Model\Managers\UserManager;
             if($title && $text) {
                 // $data déclarée pour être utilisée dans la fonction add($data) dans manager
                 $newTopic=["title"=>$title,"category_id"=>$id, "user_id"=>$userId];
+                // prend une fonction auto-intégré "lastinsertid"
                $topicId = $topicManager->add($newTopic);
 
                 $newPost=["text"=>$text,"topic_id"=>$topicId ,"user_id"=>$userId];
@@ -120,5 +121,26 @@ use Model\Managers\UserManager;
 
                 $this->redirectTo("forum","listTopicsByIdCategory",$id);
             }   
+        }
+
+
+// AJOUT D'UN POST
+        public function ajoutPost($id) {
+            // filtres pour la sécurité du formulaire
+            $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // renvoi à un user fixe (temporaire)
+            $userId= 1;
+            // variable qui relie au manager POST
+            $postManager = new PostManager();
+
+            // si les valeurs existent
+            if($text) {
+                // $data déclarée pour être utilisée dans la fonction add($data) dans manager
+                $newPost=["text"=>$text,"topic_id"=>$id ,"user_id"=>$userId];
+                 // prend une fonction auto-intégré "lastinsertid"
+                $postManager->add($newPost);
+
+                $this->redirectTo("forum","listPostsByIdCategory",$id);
+            }
         }
     }

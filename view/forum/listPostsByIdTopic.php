@@ -12,6 +12,14 @@ foreach($posts as $post){
         <?= $post->getText()." (".$post->getDatePost().")" ?>
     </p>
     <?php
-}
+} ?>
+
+<form action="index.php?ctrl=forum&action=ajoutPost&id=<?=$topic->getId()?>" method="post">
+    <label>
+        Message : <br>
+        <textarea name="text" required></textarea>
+    </label>
+    <input type="submit" value="Poster">
+</form>
 
 
