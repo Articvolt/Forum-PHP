@@ -90,8 +90,6 @@
             $userId= 1;
             //variable qui relie au manager TOPIC
             $topicManager = new TopicManager();
-            // // connection au manager POST
-            // $postManager = new PostManager();
 
             // si les valeurs existent
             if($title && $text) {
@@ -100,8 +98,6 @@
                 $topicManager->add($newTopic);
 
                 $this->redirectTo("forum","listTopicsByIdCategory",$id);
-            //    // $data déclarée pour être utilisée dans la fonction add($data) dans manager
-            //     $newPost=["text"=>$text, "topic_id"=>$newTopicId, "user_id"=>$userId];       
             }   
         }
 

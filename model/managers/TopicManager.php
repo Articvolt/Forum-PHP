@@ -6,7 +6,7 @@
     use App\DAO;
 
 // LA CLASSE "TOPICMANAGER" VA HERITER DE TOUTE LES METHODES DE LA CLASSE "MANAGER"
-    class TopicManager extends Manager{
+    class TopicManager extends Manager {
 
         // PROTECTED : permet d'utiliser les attributs et méthodes(fonctions) d'une classe parent.
 
@@ -28,27 +28,12 @@
             SELECT * 
                 FROM ".$this->tableName." t
                 WHERE t.category_id = :id
+                ORDER BY dateTopic DESC
             ";
             
             return $this->getMultipleResults(
                 DAO::select($sql, ['id' => $id]), 
                 $this->className
             );
-        }
-
-
-// FONCTION POUR AJOUTER UN TOPIC
-        public function addTopic($newTopic) {
-            parent::connect();
-
-            $this->add($newTopic);
-            
-            // $this->redirectTo("exercices/forum-PHP","listTopicsByIdCategory.php",$newTopic);
-            // // connection au manager POST
-            // $postManager = new PostManager();
-
-            // $postManager->add($newPost);
-            
-
         }
     }
