@@ -19,7 +19,7 @@
         
         public function index(){
 
-            // variable qui relie à la classe 
+            // variable qui relie au manager
             $topicManager = new TopicManager();
 
              return [
@@ -35,7 +35,7 @@
 // AFFICHAGE DES CATEGORIES
         public function listCategories(){
              
-            // variable qui relie à la classe 
+            // variable qui relie au manager
             $categoryManager = new CategoryManager();
 
             return [
@@ -50,7 +50,7 @@
 // AFFICHAGE DES TOPICS PAR CATEGORIE CIBLEE
         public function listTopicsByIdCategory($id){
 
-            // variable qui relie à la classe 
+            // variable qui relie au manager
             $topicManager = new TopicManager();
             $categoryManager = new CategoryManager();
 
@@ -67,7 +67,7 @@
 // AFFICHAGE DES POSTS PAR TOPIC CIBLEE
         public function listPostsByIdTopic($id){
 
-            // variable qui relie à la classe 
+            // variable qui relie au manager
             $postManager = new PostManager();
             $topicManager = new TopicManager();
 
@@ -81,20 +81,14 @@
             ];  
         }
         
-        // AJOUT D'UN TOPIC
+// AJOUT D'UN TOPIC
         public function ajoutTopic($id) {
             
+            //variable qui relie au manager
             $topicManager = new TopicManager();
-            $categoryManager = new CategoryManager();
             
-            return [
-                "view" => VIEW_DIR."forum/listTopicsByIdCategory.php",
-                $topicManager->addTopic($id),
-                "data" => [
-                    "topics" => $topicManager->getTopicsByIdCategory($id),
-                    "category" => $categoryManager->findOneById($id)
-                ]
-            ];  
+            
+            
             
         }
 
