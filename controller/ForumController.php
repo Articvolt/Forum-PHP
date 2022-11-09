@@ -83,13 +83,27 @@
         
 // AJOUT D'UN TOPIC
         public function ajoutTopic($id) {
-            
-            //variable qui relie au manager
+            // filtres pour la sécurité du formulaire
+            $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // renvoi à un user fixe (temporaire)
+            $userId= 1;
+            //variable qui relie au manager TOPIC
             $topicManager = new TopicManager();
-            
-            
-            
-            
-        }
+            // // connection au manager POST
+            // $postManager = new PostManager();
 
+            // si les valeurs existent 
+            if($id && $title && $text) {
+                
+                // $data déclarée pour être utilisée dans la fonction add($data) dans manager
+                $newTopic=["title"=>$title,"categorie_id"=>$id, "user_id"=>$userId];
+                $topicManager->addTopic($newTopic);
+
+                $this->redirectTo("exercices/forum-PHP","listTopicsByIdCategory.php",$newTopic);
+            //    // $data déclarée pour être utilisée dans la fonction add($data) dans manager
+            //     $newPost=["text"=>$text, "topic_id"=>$newTopicId, "user_id"=>$userId];       
+            }   
+
+        }
     }

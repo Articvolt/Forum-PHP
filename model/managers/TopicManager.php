@@ -38,29 +38,17 @@
 
 
 // FONCTION POUR AJOUTER UN TOPIC
-        public function addTopic($id) {
-            // filtres pour la sécurité du formulaire
-            $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            // renvoi à un user fixe (temporaire)
-            $userId= 1;
+        public function addTopic($newTopic) {
+            parent::connect();
 
-            // si les valeurs existent 
-            if($id && $title && $text) {
+            $this->add($newTopic);
+            
+            // $this->redirectTo("exercices/forum-PHP","listTopicsByIdCategory.php",$newTopic);
+            // // connection au manager POST
+            // $postManager = new PostManager();
 
-                // $data déclarée pour être utilisée dans la fonction add($data) dans manager
-                $newTopic=["title"=>$title,"categorie_id"=>$id, "user_id"=>$userId];
-                // utilisation de la fonction add($data) dans manager
-                $newTopicId = $this->add($newTopic);
+            // $postManager->add($newPost);
+            
 
-                // connection au manager POST
-                $postManager = new PostManager;
-
-                // $data déclarée pour être utilisée dans la fonction add($data) dans manager
-                $newPost=["text"=>$text, "topic_id"=>$newTopicId, "user_id"=>$userId];
-                //lien avec le manager POST
-                $postManager->add($newPost);
-            }
-            // $this->redirectTo("exercices/forum-PHP","listTopicsByIdCategory")
         }
     }
