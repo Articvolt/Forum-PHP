@@ -35,7 +35,7 @@ if(!$topics) {
     <br>
         <label>
             Message: <br>
-            <textarea name="content" placeholder="entrez votre message" required>
+            <textarea name="text" placeholder="entrez votre message" required>
             </textarea>
         </label>
     <br>

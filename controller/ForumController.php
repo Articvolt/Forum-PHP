@@ -102,17 +102,21 @@ use Model\Managers\UserManager;
         public function ajoutTopic($id) {
             // filtres pour la sécurité du formulaire
             $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $text = filter_input(INPUT_POST, "content", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             // renvoi à un user fixe (temporaire)
             $userId= 1;
             //variable qui relie au manager TOPIC
             $topicManager = new TopicManager();
+            $postManager = new PostManager();
 
             // si les valeurs existent
             if($title && $text) {
                 // $data déclarée pour être utilisée dans la fonction add($data) dans manager
                 $newTopic=["title"=>$title,"category_id"=>$id, "user_id"=>$userId];
-                $topicManager->add($newTopic);
+               $topicId = $topicManager->add($newTopic);
+
+                $newPost=["text"=>$text,"topic_id"=>$topicId ,"user_id"=>$userId];
+                $postManager->add($newPost);
 
                 $this->redirectTo("forum","listTopicsByIdCategory",$id);
             }   
