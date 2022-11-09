@@ -7,16 +7,19 @@
         
         public function redirectTo($ctrl = null, $action = null, $id = null){
 
-            if($ctrl != "home"){
-                $url = $ctrl ? "/".$ctrl : "";
-                $url.= $action ? "/".$action : "";
-                $url.= $id ? "/".$id : "";
+            // opérateur ternaire "?" 
+
+            // si le controller n'est pas "home"
+            if($ctrl != "home") {
+                // l'opérateur ternaire "?" est un raccourci d’écriture pour le if.
+                $url = $ctrl ? "?ctrl=".$ctrl : "";
+                $url.= $action ? "&action=".$action : "";
+                $url.= $id ? "&id=".$id : "";
                 // $url.= ".html";
             }
             else $url = "/";
             header("Location: $url");
             die();
-
         }
 
         public function restrictTo($role){

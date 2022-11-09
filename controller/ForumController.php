@@ -17,7 +17,7 @@
     class ForumController extends AbstractController implements ControllerInterface{
 
         
-        public function index(){
+        public function index() {
 
             // variable qui relie au manager
             $topicManager = new TopicManager();
@@ -28,12 +28,11 @@
                      "topics" => $topicManager->findAll(["dateTopic", "DESC"]),
                  ]
              ];
-        
         }
 
         
 // AFFICHAGE DES CATEGORIES
-        public function listCategories(){
+        public function listCategories() {
              
             // variable qui relie au manager
             $categoryManager = new CategoryManager();
@@ -48,7 +47,7 @@
 
 
 // AFFICHAGE DES TOPICS PAR CATEGORIE CIBLEE
-        public function listTopicsByIdCategory($id){
+        public function listTopicsByIdCategory($id) {
 
             // variable qui relie au manager
             $topicManager = new TopicManager();
@@ -65,7 +64,7 @@
 
     
 // AFFICHAGE DES POSTS PAR TOPIC CIBLEE
-        public function listPostsByIdTopic($id){
+        public function listPostsByIdTopic($id) {
 
             // variable qui relie au manager
             $postManager = new PostManager();
@@ -81,6 +80,7 @@
             ];  
         }
         
+
 // AJOUT D'UN TOPIC
         public function ajoutTopic($id) {
             // filtres pour la sécurité du formulaire
@@ -93,9 +93,8 @@
             // // connection au manager POST
             // $postManager = new PostManager();
 
-            // si les valeurs existent 
+            // si les valeurs existent
             if($title && $text) {
-                // var_dump("ok");die;
                 // $data déclarée pour être utilisée dans la fonction add($data) dans manager
                 $newTopic=["title"=>$title,"category_id"=>$id, "user_id"=>$userId];
                 $topicManager->add($newTopic);
@@ -104,6 +103,20 @@
             //    // $data déclarée pour être utilisée dans la fonction add($data) dans manager
             //     $newPost=["text"=>$text, "topic_id"=>$newTopicId, "user_id"=>$userId];       
             }   
+        }
 
+
+// AJOUT D'UN LABEL
+        public function ajoutCategory() {
+            $label= filter_input(INPUT_POST, "label", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            $categoryManager = new CategoryManager();
+
+            if($label) {
+                $newLabel=["label"=>$label];
+                $categoryManager->add($newLabel);
+
+                $this->redirectTo("forum","listCategories");
+            }
         }
     }
