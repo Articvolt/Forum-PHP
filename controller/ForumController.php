@@ -81,22 +81,21 @@
             ];  
         }
         
-// AJOUT D'UN TOPIC
-        public function addTopic($id) {
-
-            $topicManager = new TopicManager();
-
+        // AJOUT D'UN TOPIC
+        public function ajoutTopic($id) {
             
-        }
-
-       
-
-// AJOUT D'UN POST SI TOPIC OUVERT
-        public function addPost($id) {
-
-            $postManager = new PostManager();
-
-           
+            $topicManager = new TopicManager();
+            $categoryManager = new CategoryManager();
+            
+            return [
+                "view" => VIEW_DIR."forum/listTopicsByIdCategory.php",
+                $topicManager->addTopic($id),
+                "data" => [
+                    "topics" => $topicManager->getTopicsByIdCategory($id),
+                    "category" => $categoryManager->findOneById($id)
+                ]
+            ];  
+            
         }
 
     }
