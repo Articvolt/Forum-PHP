@@ -14,8 +14,9 @@ if(!$topics) {
         ?>
         <p>
             <a href="index.php?ctrl=forum&action=listPostsByIdTopic&id=<?=$topic->getId()?>">
-                <?= $topic->getTitle()." (".$topic->getDateTopic().")" ?>
+                <?= $topic->getTitle() ?>
             </a>
+            <?= $topic->getDateTopic()." ".$topic->getUser() ?>
         </p>
         <?php
     }

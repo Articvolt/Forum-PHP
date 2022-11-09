@@ -11,7 +11,8 @@
     use Model\Managers\TopicManager;
     use Model\Managers\PostManager;
     use Model\Managers\CategoryManager;
-    
+use Model\Managers\UserManager;
+
     // la classe "ForumController" va hériter à toutes les méthodes et propriétés de la classe "AbstractController"
     // l'opérateur "implement" implémente les méthodes(fonctions) de l'interface "ContollerInterface"
     class ForumController extends AbstractController implements ControllerInterface{
@@ -36,11 +37,12 @@
              
             // variable qui relie au manager
             $categoryManager = new CategoryManager();
+           
 
             return [
                 "view" => VIEW_DIR."forum/listCategories.php",
                 "data" => [
-                    "categories" => $categoryManager->findAll(["label","ASC"])
+                    "categories" => $categoryManager->findAll(["label","ASC"]),
                 ]
             ];  
          }
@@ -79,8 +81,23 @@
                 ]
             ];  
         }
-        
 
+        
+// AJOUT D'UN LABEL
+        public function ajoutCategory() {
+            $label= filter_input(INPUT_POST, "label", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        
+            $categoryManager = new CategoryManager();
+        
+            if($label) {
+                 $newLabel=["label"=>$label];
+                $categoryManager->add($newLabel);
+        
+                $this->redirectTo("forum","listCategories");
+            }
+        }
+   
+        
 // AJOUT D'UN TOPIC
         public function ajoutTopic($id) {
             // filtres pour la sécurité du formulaire
@@ -99,20 +116,5 @@
 
                 $this->redirectTo("forum","listTopicsByIdCategory",$id);
             }   
-        }
-
-
-// AJOUT D'UN LABEL
-        public function ajoutCategory() {
-            $label= filter_input(INPUT_POST, "label", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-            $categoryManager = new CategoryManager();
-
-            if($label) {
-                $newLabel=["label"=>$label];
-                $categoryManager->add($newLabel);
-
-                $this->redirectTo("forum","listCategories");
-            }
         }
     }

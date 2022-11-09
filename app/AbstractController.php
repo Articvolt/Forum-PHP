@@ -17,7 +17,7 @@
                 $url.= $id ? "&id=".$id : "";
                 // $url.= ".html";
             }
-            else $url = "/";
+            else $url = "layout";
             header("Location: $url");
             die();
         }
