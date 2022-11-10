@@ -14,6 +14,8 @@ foreach($posts as $post){
     <?php
 } ?>
 
+<h2>Ajout d'un post</h2>
+
 <form action="index.php?ctrl=forum&action=ajoutPost&id=<?=$topic->getId()?>" method="post">
     <label>
         Message : <br>

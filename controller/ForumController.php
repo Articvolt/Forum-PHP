@@ -140,7 +140,7 @@ use Model\Managers\UserManager;
                  // prend une fonction auto-intégré "lastinsertid"
                 $postManager->add($newPost);
 
-                $this->redirectTo("forum","listPostsByIdCategory",$id);
+                $this->redirectTo("forum","listPostsByIdTopic",$id);
             }
         }
     }
