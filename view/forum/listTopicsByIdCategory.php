@@ -16,17 +16,18 @@ if(!$topics) {
             <a href="index.php?ctrl=forum&action=listPostsByIdTopic&id=<?=$topic->getId()?>">
                 <?= $topic->getTitle() ?>
             </a>
+            <!-- affiche un icone "ouvert" ou "fermé" selon si le sujet est ouvert ou non -->
             <?php
-        if($topic->getClosed() == 1) {
+                if($topic->getClosed() == 1) {
             ?>
-            <i class="fa-solid fa-lock"></i>
+                <i class="fa-solid fa-lock"></i>
             <?php
-        } else { 
+                } else { 
             ?> 
-            <i class="fa-solid fa-unlock"></i>
+                <i class="fa-solid fa-unlock"></i>
             <?php
-        }  
-        ?>
+                }  
+            ?>
             <?= $topic->getDateTopic()." ".$topic->getUser() ?>
         </p>
         <?php

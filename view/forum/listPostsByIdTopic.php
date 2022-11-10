@@ -5,17 +5,18 @@ $topic = $result["data"]['topic'];
 
 <h1>
     liste des messages dans le sujet <?= $topic ?> 
+    <!-- affiche un icone "ouvert" ou "fermé" selon si le sujet est ouvert ou non -->
     <?php
         if($topic->getClosed() == 1) {
-            ?>
+    ?>
             <i class="fa-solid fa-lock"></i>
-            <?php
+    <?php
         } else { 
-            ?> 
+    ?> 
             <i class="fa-solid fa-unlock"></i>
-            <?php
+    <?php
         }  
-        ?>
+    ?>
 </h1>
 
 <?php
@@ -27,9 +28,9 @@ foreach($posts as $post){
 <?php
     } 
 
-
+// affiche le formulaire si le sujet est ouvert
     if($topic->getClosed() == 0) {
-        ?>
+?>
         <h2>Ajout d'un post</h2>
 
         <form action="index.php?ctrl=forum&action=ajoutPost&id=<?=$topic->getId()?>" method="post">
