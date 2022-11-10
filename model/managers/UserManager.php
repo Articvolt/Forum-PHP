@@ -19,4 +19,26 @@
         public function __construct() {
             parent::connect();
         }
+
+// FONCTION SELECTIONNE LE PASSWORD EN FONCTION DU MAIL DONNE
+        public function getPasswordUser($email){
+            $sql = "
+                SELECT password 
+                FROM ".$this->tableName." 
+                WHERE email = :email
+            ";
+            return($this->getSingleScalarResult(DAO::select($sql,['email' => $email])));
+        }
+
+  
+// FONCTION SELECTIONNE L'UTILISATEUR EN FONCTION DU MAIL DONNE
+        public function getUser($email){
+            $sql = "
+                SELECT * 
+                FROM ".$this->tableName." 
+                WHERE email = :email
+            ";
+            return($this->getOneOrNullResult(DAO::select($sql,['email' => $email],false),$this->className));
+            
+        }
     }

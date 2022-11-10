@@ -47,14 +47,38 @@
 
 // FONCTION QUI CONNECTE A L'UTILISATEUR
         public function login() {
-            // filtres pour la sécurité du formulaire
-            $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-            $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            // si les valeurs existent : 
-            if($email && $password) {
-                // relie au manager User
-                $userManager = new UserManager();
+            // si il y a des valeurs non nulles
+            if(isset($_POST['submit'])) {
+                // filtres pour la sécurité du formulaire
+                $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+                // filtrer un mot de passe peux donner à certains mot de passe une modification lors du filtre et donc le rendre erroné
+                $password = $_POST["password"];
+                // si les valeurs existent : 
+                if($email && $password) {
+                    // relie au manager User
+                    $userManager = new UserManager();
+                    
+                    // relie le mot de passe à une adresse mail
+                    $getPassword = $userManager->getPasswordUser($email);
+                    // relie le mail à l'utilisateur
+                    $getUser = $userManager->getUser($email);
+                    
+                    // comparaison (hashage) du mot de passe de la BDD et celui du formulaire
+                    $checkPassword = password_verify($password, $getPassword['password']);
+ 
+                    // si le code est bon
+                    if($checkPassword){
+                        // connection à la sesion de l'utilisateur
+                        Session::setUser($getUser);
+                        // redirige à la page d'accueil
+                        // $this->redirectTo('home');
+                    }
+                }
             }
+            // renvoie à la page de connexion si le formulaire est vide
+            return [
+                "view" => VIEW_DIR . "security/login.php"
+            ];
         }
 
     }
