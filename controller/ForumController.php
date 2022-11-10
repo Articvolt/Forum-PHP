@@ -85,10 +85,13 @@ use Model\Managers\UserManager;
         
 // AJOUT D'UN LABEL
         public function ajoutCategory() {
+            // filtres pour la sécurité du formulaire
             $label= filter_input(INPUT_POST, "label", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        
+            
+            //variable qui relie au manager category
             $categoryManager = new CategoryManager();
         
+             // si les valeurs existent
             if($label) {
                  $newLabel=["label"=>$label];
                 $categoryManager->add($newLabel);
@@ -114,7 +117,7 @@ use Model\Managers\UserManager;
                 // $data déclarée pour être utilisée dans la fonction add($data) dans manager
                 $newTopic=["title"=>$title,"category_id"=>$id, "user_id"=>$userId];
                 // prend une fonction auto-intégré "lastinsertid"
-               $topicId = $topicManager->add($newTopic);
+                $topicId = $topicManager->add($newTopic);
 
                 $newPost=["text"=>$text,"topic_id"=>$topicId ,"user_id"=>$userId];
                 $postManager->add($newPost);
