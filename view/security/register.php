@@ -9,7 +9,7 @@
 <body>
     <h1>S'inscrire</h1>
 
-    <form action="\exercices/forum-PHP/index.php?ctrl=security&action=addUser" method="post">
+    <form action="\exercices/forum-PHP/index.php?ctrl=security&action=addUser" onsubmit="validation()" method="post">
         <label >
             pseudonyme : <br>
             <input type="text" name="pseudonyme" required>
@@ -32,5 +32,12 @@
         <br>
         <input type="submit" value="S'inscrire">
     </form>
+
+    <!-- message de validation -->
+    <script>
+        function validation() {
+            alert("votre enregistrement a bien été validé !")
+        }
+    </script>
 </body>
 </html>

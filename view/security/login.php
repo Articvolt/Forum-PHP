@@ -9,7 +9,7 @@
 <body>
     <h1>Se connecter</h1>
 
-    <form action="" method="post">
+    <form action="\exercices/forum-PHP/index.php?ctrl=security&action=login" method="post">
     <label >
             email : <br>
             <input type="text" name="email" required>
@@ -17,7 +17,7 @@
         <br>
         <label >
             password : <br>
-            <input type="text" name="password" required>
+            <input type="password" name="password" required>
         </label>
         <br>
         <input type="submit" value="Se connecter">

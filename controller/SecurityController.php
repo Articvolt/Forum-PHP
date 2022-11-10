@@ -25,14 +25,15 @@
             $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
             $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $password2 = filter_input(INPUT_POST, "password2", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            // var_dump("ok");die;
             // si les valeurs existent : 
             if($pseudonyme && $email && $password && $password2) {
                 
                 // relie au manager User
                 $userManager = new UserManager();
+                // hashage du mot de passe
+                $passwordHash = password_hash($password, PASSWORD_DEFAULT);
                 // $data déclarée pour être utilisée dans la fonction add($data) dans manager
-                $newUser=["pseudonyme"=>$pseudonyme, "email"=>$email, "password"=>$password];
+                $newUser=["pseudonyme"=>$pseudonyme, "email"=>$email, "password"=>$passwordHash];
                 // on vérifie si le premier mot de passe et le second mot de passe sont identiques
                 if($password == $password2) {
                     // execution de la fonction pré-implemté add($data)
@@ -40,7 +41,20 @@
                 }
            }
            // retourne la vue de connexion des utilisateurs
-           return ["view" => VIEW_DIR."./security/register.php"];
+           return ["view" => VIEW_DIR."./security/login.php"];
+        }
+
+
+// FONCTION QUI CONNECTE A L'UTILISATEUR
+        public function login() {
+            // filtres pour la sécurité du formulaire
+            $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+            $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // si les valeurs existent : 
+            if($email && $password) {
+                // relie au manager User
+                $userManager = new UserManager();
+            }
         }
 
     }
