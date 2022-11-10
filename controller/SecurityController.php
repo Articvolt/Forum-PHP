@@ -76,9 +76,7 @@
                 }
             }
             // renvoie à la page de connexion si le formulaire est vide
-            return [
-                "view" => VIEW_DIR . "security/login.php"
-            ];
+            return ["view" => VIEW_DIR . "security/login.php"];
         }
 
     }
