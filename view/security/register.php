@@ -9,7 +9,7 @@
 <body>
     <h1>S'inscrire</h1>
 
-    <form action="index.php?ctrl=security&action=addUser" method="post">
+    <form action="\exercices/forum-PHP/index.php?ctrl=security&action=addUser" method="post">
         <label >
             pseudonyme : <br>
             <input type="text" name="pseudonyme" required>
