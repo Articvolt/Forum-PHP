@@ -3,7 +3,7 @@ $topics = (!$result["data"]['topics']) ? [] : $result["data"]['topics'];
 $category = $result["data"]['category'];
 ?>
 
-<h1>liste des topics dans la catégorie <?= $category ?> </h1>
+<h1>liste des sujets dans la catégorie <?= $category ?> </h1>
 
 <?php
 
@@ -16,6 +16,17 @@ if(!$topics) {
             <a href="index.php?ctrl=forum&action=listPostsByIdTopic&id=<?=$topic->getId()?>">
                 <?= $topic->getTitle() ?>
             </a>
+            <?php
+        if($topic->getClosed() == 1) {
+            ?>
+            <i class="fa-solid fa-lock"></i>
+            <?php
+        } else { 
+            ?> 
+            <i class="fa-solid fa-unlock"></i>
+            <?php
+        }  
+        ?>
             <?= $topic->getDateTopic()." ".$topic->getUser() ?>
         </p>
         <?php
