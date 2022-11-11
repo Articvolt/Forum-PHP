@@ -33,7 +33,7 @@ foreach($posts as $post){
 ?>
         <h2>Ajout d'un post</h2>
 
-        <form action="index.php?ctrl=forum&action=ajoutPost&id=<?=$topic->getId()?>" method="post">
+        <form class="formAddList" action="index.php?ctrl=forum&action=ajoutPost&id=<?=$topic->getId()?>" method="post">
             <label>
                 Message : <br>
                 <textarea name="text" required></textarea>

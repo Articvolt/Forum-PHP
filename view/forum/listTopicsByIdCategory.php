@@ -39,7 +39,7 @@ if(!$topics) {
 
 <h2>Ajout d'un topic</h2>
 
-    <form action="index.php?ctrl=forum&action=ajoutTopic&id=<?=$category->getId()?>" method="post">
+    <form class="formAddList" action="index.php?ctrl=forum&action=ajoutTopic&id=<?=$category->getId()?>" method="post">
         <label>
             Titre: <br>
             <input type="text" name="title" placeholder="Titre du topic" required>

@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(245,198,139);
+    background: radial-gradient(circle, rgba(245,198,139,1) 48%, rgba(184,96,18,0.9724264705882353) 100%);
+}
+
+
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* FORMULAIRE ADD LISTE FIXE AU COIN HAUT DROITE  */
+.formAddList {
+   position: fixed;
+   right: 10px;
+   top: 10px;
+   border: solid 1px black;
+   padding: 10px;
+   border-radius: 5px;
+}
+
+/* AFFICHAGE TABLE FORUM */
+.listTable,td {
+    border: solid 1px black;
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 90%;
+    font-family: sans-serif;
+    border-radius: 5px;
+}
+
+.listTable th {
+    padding: 10px;
+    background-color: brown;
+}
+
+.listTable td {
+    padding: 5px;
+    text-align: center;
+}
+
+.listTable tr {
+    background-color: white;
+}
+.listTable tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.listTable td a {
+    text-decoration: none;
+    color: black;
+}
+
+.listTable td a:hover {
+    text-decoration: none;
+    color: red;
+}
+

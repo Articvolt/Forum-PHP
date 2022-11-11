@@ -3,16 +3,29 @@ $categories = $result["data"]['categories'];
 ?>
 <h1>liste des catégories</h1>
 
-<?php
+<table class="listTable">
+    <thead>
+        <tr>
+            <th>TITRE</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        foreach($categories as $category ){
+            ?>
+                <tr>
+                    <td>
+                    <a href="index.php?ctrl=forum&action=listTopicsByIdCategory&id=<?=$category->getId()?>"><?=$category->getLabel()?></a>
+                    </td>
+                </tr>
+            <?php
+        }
+        ?>
+    </tbody>
+</table>
 
-foreach($categories as $category ){
-    ?>
-    <p><a href="index.php?ctrl=forum&action=listTopicsByIdCategory&id=<?=$category->getId()?>"><?=$category->getLabel()?></a></p>
-    <?php
-}
-?>
-
-<form action="index.php?ctrl=forum&action=ajoutCategory" method="post">
+<!-- FORMULAIRE ADD CATEGORY -->
+<form class="formAddList" action="index.php?ctrl=forum&action=ajoutCategory" method="post">
     <label >
         Label <br>
         <input type="text" name="label" placeholder="Entrez un label" required>
