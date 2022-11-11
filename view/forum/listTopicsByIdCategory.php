@@ -5,35 +5,55 @@ $category = $result["data"]['category'];
 
 <h1>liste des sujets dans la catégorie <?= $category ?> </h1>
 
+<table class="listTable">
+    <thead>
+        <tr>
+            <th></th>
+            <th>SUJET</th>
+            <th>AUTEUR</th>
+            <th>DATE</th>
+        </tr>
+    </thead>
+    <tbody>
 <?php
-
 if(!$topics) {
     echo "Pas de topics dans cette catégorie";
 } else {
     foreach($topics as $topic) {
         ?>
-        <p>
-            <a href="index.php?ctrl=forum&action=listPostsByIdTopic&id=<?=$topic->getId()?>">
-                <?= $topic->getTitle() ?>
-            </a>
-            <!-- affiche un icone "ouvert" ou "fermé" selon si le sujet est ouvert ou non -->
-            <?php
-                if($topic->getClosed() == 1) {
-            ?>
-                <i class="fa-solid fa-lock"></i>
-            <?php
-                } else { 
-            ?> 
-                <i class="fa-solid fa-unlock"></i>
-            <?php
-                }  
-            ?>
-            <?= $topic->getDateTopic()." ".$topic->getUser() ?>
-        </p>
+        <tr>
+            <td>
+                <!-- affiche un icone "ouvert" ou "fermé" selon si le sujet est ouvert ou non -->
+                <?php
+                    if($topic->getClosed() == 1) {
+                ?>
+                    <i class="fa-solid fa-lock"></i>
+                <?php
+                    } else { 
+                ?> 
+                    <i class="fa-solid fa-unlock"></i>
+                <?php
+                    }  
+                ?>
+            </td>
+            <td>
+                <a href="index.php?ctrl=forum&action=listPostsByIdTopic&id=<?=$topic->getId()?>">
+                    <?= $topic->getTitle() ?>
+                </a>
+            </td>
+            <td>
+                <?= $topic->getDateTopic() ?>
+            </td>
+            <td>
+                <?= $topic->getUser() ?>
+            </td>
+        </tr>
         <?php
     }
 }
 ?>
+    </tbody>
+</table>
 
 <!-- AJOUT D'UN FORMULAIRE -->
 
