@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="..\css/style-connect.css">
     <title>Se connecter</title>
 </head>
-<body>
+<body class="body-connect">
     <h1>Se connecter</h1>
 
     <form action="\exercices/forum-PHP/index.php?ctrl=security&action=login" method="post">

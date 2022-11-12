@@ -1,0 +1,9 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.body-register {
+    text-align: center;
+    margin: auto;
+}
