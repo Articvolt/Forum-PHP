@@ -20,7 +20,7 @@
             <header>
                 <nav>
                     <div id="nav-left">
-                        <a href="/exercices/Forum-PHP/">Accueil</a>
+                        <a href="/exercices/Forum-PHP/"> <i class="fa-solid fa-house"></i> Accueil</a>
                         <?php
                         if(App\Session::isAdmin()){
                             ?>
@@ -45,16 +45,14 @@
                             <a href="./view/security/register.php">Inscription</a>
                             <a href="index.php?ctrl=forum&action=listCategories">la liste des categories</a>
                         <?php
-                        }
-                   
-                        
+                        }            
                     ?>
                     </div>
                 </nav>
             </header>
             
             <main id="forum">
-                <?= $page ?>
+                    <?= $page ?>
             </main>
         </div>
         <footer>

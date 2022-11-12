@@ -1,24 +1,28 @@
 * {
     margin: 0;
     box-sizing: border-box;
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-body {
-    background: rgb(245,198,139);
-    background: radial-gradient(circle, rgba(245,198,139,1) 48%, rgba(184,96,18,0.9724264705882353) 100%);
+
+:root {
+    --color-text:white;
 }
 
 
 h1 {
     text-align: center;
+    margin: 30px;
     text-transform: uppercase;
 }
+
 
 /* FORMULAIRE ADD LISTE FIXE AU COIN HAUT DROITE  */
 .formAddList {
    position: fixed;
    right: 10px;
-   top: 10px;
+   bottom: 10px;
    border: solid 1px black;
    padding: 10px;
    border-radius: 5px;
@@ -37,6 +41,7 @@ h1 {
 .listTable {
     border: solid 1px black;
     margin: 20px auto;
+    width: 80%;
     border-collapse: collapse;
     font-family: sans-serif;
     border-radius: 5px;
@@ -48,18 +53,14 @@ h1 {
     border: solid 1px black;
 }
 
-.listTable td {
+.listTable td, .listTable th {
     padding: 5px;
     text-align: center;
+    border: solid 1px;
 }
 
 .listTable tr {
     background-color: white;
-}
-
-.listTable tr th {
-    background-color: white;
-    border: solid 1px black;
 }
 
 .listTable tr:nth-child(even) {
@@ -76,3 +77,42 @@ h1 {
     color: red;
 }
 
+/* HEADER + NAVBAR */
+header {
+    padding-bottom: 120px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url("../img/background.jpg");
+    object-fit:cover;
+    background-attachment: fixed; /* fixe l'image lors du scroll */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 250px;
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px ;
+}
+
+
+#nav-left a {
+    color: var(--color-text);
+    text-transform: uppercase;
+    margin: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#nav-right {
+    text-align: end; 
+}
+
+#nav-right a {
+    color: var(--color-text);
+    text-transform: uppercase;
+    margin: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
