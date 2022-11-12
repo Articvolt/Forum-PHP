@@ -34,11 +34,10 @@ h1 {
 
 
 /* AFFICHAGE TABLE FORUM */
-.listTable,td {
+.listTable {
     border: solid 1px black;
     margin: 20px auto;
     border-collapse: collapse;
-    width: 90%;
     font-family: sans-serif;
     border-radius: 5px;
 }
@@ -46,6 +45,7 @@ h1 {
 .listTable th {
     padding: 10px;
     background-color: brown;
+    border: solid 1px black;
 }
 
 .listTable td {
@@ -56,6 +56,12 @@ h1 {
 .listTable tr {
     background-color: white;
 }
+
+.listTable tr th {
+    background-color: white;
+    border: solid 1px black;
+}
+
 .listTable tr:nth-child(even) {
     background-color: #dddddd;
 }

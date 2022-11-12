@@ -19,15 +19,29 @@ $topic = $result["data"]['topic'];
     ?>
 </h1>
 
+<table class="listTable">
+    <thead>
+        <tr>
+            <th>message</th>
+            <th>auteur</th>
+            <th>date</th>
+        </tr>
+    </thead>
+    <tbody>
 <?php
 foreach($posts as $post){
     ?>
-    <p>      
-        <?= $post->getText()." (".$post->getDatePost().")" ?>
-    </p>
+    <tr>
+        <td><?= $post->getText() ?></td>
+        <td></td>
+        <td><?= $post->getDatePost() ?></td>
+    </tr>      
 <?php
     } 
-
+?>
+    </tbody>
+</table>
+<?php
 // affiche le formulaire si le sujet est ouvert
     if($topic->getClosed() == 0) {
 ?>
