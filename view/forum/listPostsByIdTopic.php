@@ -33,7 +33,7 @@ foreach($posts as $post){
     ?>
     <tr>
         <td><?= $post->getText() ?></td>
-        <td></td>
+        <td> <?= $post->getUser() ?> </td>
         <td><?= $post->getDatePost() ?></td>
     </tr>      
 <?php
@@ -45,15 +45,17 @@ foreach($posts as $post){
 // affiche le formulaire si le sujet est ouvert
     if($topic->getClosed() == 0) {
 ?>
+    <div class="formAddList">
         <h2>Ajout d'un post</h2>
 
-        <form class="formAddList" action="index.php?ctrl=forum&action=ajoutPost&id=<?=$topic->getId()?>" method="post">
+        <form  action="index.php?ctrl=forum&action=ajoutPost&id=<?=$topic->getId()?>" method="post">
             <label>
                 Message : <br>
                 <textarea name="text" required></textarea>
             </label>
             <input type="submit" value="Poster">
         </form>
+    </div>
 <?php
     } 
 

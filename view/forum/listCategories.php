@@ -25,10 +25,13 @@ $categories = $result["data"]['categories'];
 </table>
 
 <!-- FORMULAIRE ADD CATEGORY -->
-<form class="formAddList" action="index.php?ctrl=forum&action=ajoutCategory" method="post">
-    <label >
-        Label <br>
-        <input type="text" name="label" placeholder="Entrez un label" required>
-    </label>
-    <input type="submit" value="enregistrer">
-</form>
+<div class="formAddList">
+    <h2>Ajout d'une catégorie</h2>
+    <form action="index.php?ctrl=forum&action=ajoutCategory" method="post">
+        <label >
+            Label <br>
+            <input type="text" name="label" placeholder="Entrez un label" required>
+        </label>
+        <input type="submit" value="enregistrer">
+    </form>
+</div>
