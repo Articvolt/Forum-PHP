@@ -10,7 +10,9 @@
 </head>
 <body>
     <header>
-        <a href="/exercices/Forum-PHP/"><i class="fa-solid fa-house"></i>Accueil</a>
+        <nav>
+            <a href="/exercices/Forum-PHP/"><i class="fa-solid fa-house"></i>Accueil</a>
+        </nav>
      </header>
     <main>
         <h1>S'inscrire</h1>

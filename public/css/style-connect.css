@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    background-color: #AFB4C6;
+}
+
+
+header {
+    padding-bottom: 120px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url("../img/background.jpg");
+    object-fit:cover;
+    background-attachment: fixed; /* fixe l'image lors du scroll */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 250px;
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+
+nav a {
+    color: white;
+    text-transform: uppercase;
+    margin: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}

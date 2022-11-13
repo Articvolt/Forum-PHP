@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <title>Se connecter</title>
 </head>
-<body class="body-connect">
+<body>
     <header>
-        <a href="/exercices/Forum-PHP/"><i class="fa-solid fa-house"></i>Accueil</a>
+        <nav>
+            <a href="/exercices/Forum-PHP/"><i class="fa-solid fa-house"></i>Accueil</a>
+        </nav>
     </header>
     <main>
         <h1>Se connecter</h1>
