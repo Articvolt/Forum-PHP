@@ -97,17 +97,29 @@
                         // relie le mail à l'utilisateur
                         $getUser = $userManager->getUser($email);
                         
-                        // comparaison (hashage) du mot de passe de la BDD et celui du formulaire
-                        $checkPassword = password_verify($password, $getPassword['password']);
-     
-                        // si le code est bon
-                        if($checkPassword){
-                            // connection à la session de l'utilisateur
-                            Session::setUser($getUser);
-                            $this->redirectTo('home');
-                        }
-                    }
-                } 
+                        // si il y a un utilisateur
+                        if($getUser) {
+                            // comparaison (hashage) du mot de passe de la BDD et celui du formulaire
+                            $checkPassword = password_verify($password, $getPassword['password']);
+         
+                            // si le code est bon
+                            if($checkPassword){
+                                // connection à la session de l'utilisateur
+                                Session::setUser($getUser);
+                                Session::addFlash('success', 'Bienvenue');
+                                $this->redirectTo('home');
+
+                            // message d'erreur si les mots de passe ne sont pas identiques
+                            } else Session::addFlash('error', 'Mot de passe incorrect');
+                        
+                        // message d'erreur si il n'y a pas de compte lié
+                        } else Session::addFlash('error', 'Aucun compte pour cet Email');
+                    
+                    // message d'erreur si le mot de passe n'est pas correct
+                    } else Session::addFlash('error', 'Mot de passe incorrect');
+                
+                // message d'erreur si le mail n'a pas de comptes
+                } else Session::addFlash('error', 'Email incorrect');
                 
             }
             // renvoie à la page de connexion si le formulaire est vide
