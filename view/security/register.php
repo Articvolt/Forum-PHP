@@ -11,7 +11,7 @@
 <body>
     <header>
         <nav>
-            <a href="/exercices/Forum-PHP/"><i class="fa-solid fa-house"></i>Accueil</a>
+            <a href="/exercices/Forum-PHP/"><i class="fa-solid fa-house"></i> Accueil</a>
         </nav>
      </header>
     <main>

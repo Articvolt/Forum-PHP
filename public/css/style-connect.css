@@ -19,13 +19,12 @@ header {
     background-position: center;
     background-size: cover;
     height: 250px;
-    width: 100%;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
-    padding-top: 30px;
+    padding-top: 10px;
 }
 
 nav a {
