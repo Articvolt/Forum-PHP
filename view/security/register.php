@@ -33,16 +33,16 @@
                 </label>
             </p>
             <p>
-                <input id="button" type="submit" value="S'inscrire">
+                <input id="button" type="submit" name="register" value="S'inscrire">
             </p>
         </form>
     </main>
 
     <!-- message de validation -->
-    <script>
+    <!-- <script>
         function validation() {
             alert("votre enregistrement a bien été validé !")
         }
-    </script>
+    </script> -->
 </body>
 </html>

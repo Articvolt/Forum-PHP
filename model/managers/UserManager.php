@@ -20,6 +20,25 @@
             parent::connect();
         }
 
+        // Add a user and check the different inputs
+        public function checkPseudonyme($pseudonyme){
+            $sql = "
+                SELECT pseudonyme 
+                FROM user
+                WHERE pseudonyme = :pseudonyme
+                ";
+            return(DAO::select($sql,['pseudonyme' => $pseudonyme]));
+        }
+        
+        public function checkEmail($email){
+            $sql = "
+                SELECT email 
+                FROM user 
+                WHERE email = :email
+            ";
+            return(DAO::select($sql,['email' => $email]));
+        }
+
 // FONCTION SELECTIONNE LE PASSWORD EN FONCTION DU MAIL DONNE
         public function getPasswordUser($email){
             $sql = "

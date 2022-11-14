@@ -6,9 +6,13 @@
     use App\Session;
     use App\AbstractController;
     use App\ControllerInterface;
+    use App\DAO;
 
     // relie à tout les controllers
     use Model\Managers\UserManager;
+    use Model\Managers\PostManager;
+    use Model\Managers\TopicManager;
+    use Model\Managers\CategorieManager;
 
     // la classe "SecurityController" va hériter à toutes les méthodes et propriétés de la classe "AbstractController"
     // l'opérateur "implement" implémente les méthodes(fonctions) de l'interface "ContollerInterface"
@@ -18,30 +22,46 @@
 
         }
 
+
 // FONCTION QUI AJOUTE UN UTILISATEUR
         public function addUser() {
-            // filtres pour la sécurité du formulaire
-            $pseudonyme = filter_input(INPUT_POST, "pseudonyme", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-            $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $password2 = filter_input(INPUT_POST, "password2", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            // si les valeurs existent : 
-            if($pseudonyme && $email && $password && $password2) {
-                
-                // relie au manager User
-                $userManager = new UserManager();
-                // hashage du mot de passe
-                $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                // $data déclarée pour être utilisée dans la fonction add($data) dans manager
-                $newUser=["pseudonyme"=>$pseudonyme, "email"=>$email, "password"=>$passwordHash];
-                // on vérifie si le premier mot de passe et le second mot de passe sont identiques
-                if($password == $password2) {
-                    // execution de la fonction pré-implemté add($data)
-                    $userManager->add($newUser);                  
-                }
-           }
-           // retourne la vue de connexion des utilisateurs
-           return ["view" => VIEW_DIR.".home.php"];
+            // si des valeurs dans le formulaire 
+            if (isset($_POST['register'])) {
+
+                // filtres pour la sécurité du formulaire
+                $pseudonyme = filter_input(INPUT_POST, "pseudonyme", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+                // pas de filtre sur un mot de passe choisi par l'utilisateur
+                $password = $_POST['password'];
+                $password2 =  $_POST['password2'];
+
+                // si les valeurs existent et que les deux mots de passes sont identiques : 
+                if($pseudonyme && $email && $password && $password2 && ($password == $password2)) {
+                    
+                    // relie au manager User
+                    $userManager = new UserManager();
+
+                    // vérifie si un mail ou un pseudonyme est deja dans la base de données
+                    $checkPseudonyme = $userManager->checkPseudonyme($pseudonyme);
+                    $checkEmail = $userManager->checkEmail($email);
+
+                    // Si il n'y a pas de pseudonyme ou d'email existant
+                    if ($checkPseudonyme == NULL && $checkEmail == NULL) {
+                        // hashage du mot de passe
+                        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+                        // $data déclarée pour être utilisée dans la fonction add($data) dans manager
+                        $newUser=["pseudonyme"=>$pseudonyme, "email"=>$email, "password"=>$passwordHash];
+                        
+                        // execution de la fonction pré-implemté add($data)
+                        $userManager->add($newUser); 
+                        // redirige vers la page d'accueil
+                        $this->redirectTo('home');                 
+                    
+                    } else Session::addFlash('erreur', 'EMAIL OU PSEUDO DEJA UTILISE');
+                } else Session::addFlash('erreur', 'LES MDP NE CORRESPONDENT PAS');
+            // retourne la vue de connexion des utilisateurs
+           
+            } return ["view" => VIEW_DIR. ".security/register.php"];
         }
 
 
@@ -68,10 +88,8 @@
  
                     // si le code est bon
                     if($checkPassword){
-                        // connection à la sesion de l'utilisateur
+                        // connection à la session de l'utilisateur
                         Session::setUser($getUser);
-                        // redirige à la page d'accueil
-                        // $this->redirectTo('home');
                     }
                 }
             }
