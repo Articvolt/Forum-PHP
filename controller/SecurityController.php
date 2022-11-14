@@ -79,13 +79,13 @@
         public function login() {
 
             // si il y a des valeurs non nulles
-            if(isset($_POST['submit'])) {
+            if(isset($_POST['connect'])) {
 
                 // filtres pour la sécurité du formulaire
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
                 // filtrer un mot de passe peux donner à certains mot de passe une modification lors du filtre et donc le rendre erroné
                 $password = $_POST["password"];
-
+                // var_dump("ok");die;
                 // si les valeurs existent : 
                 if($email) {
                     if($password) {
@@ -110,7 +110,7 @@
                                 $this->redirectTo('home');
 
                             // message d'erreur si les mots de passe ne sont pas identiques
-                            } else Session::addFlash('error', 'Mot de passe incorrect');
+                            } else Session::addFlash('error', "Le mot de passe n'est pas le bon");
                         
                         // message d'erreur si il n'y a pas de compte lié
                         } else Session::addFlash('error', 'Aucun compte pour cet Email');

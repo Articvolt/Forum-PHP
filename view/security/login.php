@@ -13,7 +13,7 @@
                 <input type="password" name="password" required>
             </label>
             <br>
-            <input type="submit" value="Se connecter">
+            <input type="submit" name="connect" value="Se connecter">
         </form>
     </main>
 

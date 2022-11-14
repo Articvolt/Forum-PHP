@@ -20,7 +20,7 @@
             parent::connect();
         }
 
-        // Add a user and check the different inputs
+// FONCTION QUI VERIFIE SI LE PSEUDONYME ECRIT EST DEJA DANS LA BASE DE DONNEES
         public function checkPseudonyme($pseudonyme){
             $sql = "
                 SELECT pseudonyme 
@@ -29,7 +29,9 @@
                 ";
             return(DAO::select($sql,['pseudonyme' => $pseudonyme]));
         }
-        
+  
+
+// FONCTION QUI VERIFIE SI L'EMAIL ECRIT EST DEJA DANS LA BASE DE DONNEES
         public function checkEmail($email){
             $sql = "
                 SELECT email 
@@ -38,6 +40,7 @@
             ";
             return(DAO::select($sql,['email' => $email]));
         }
+
 
 // FONCTION SELECTIONNE LE PASSWORD EN FONCTION DU MAIL DONNE
         public function getPasswordUser($email){
