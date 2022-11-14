@@ -41,7 +41,7 @@
                 }
            }
            // retourne la vue de connexion des utilisateurs
-           return ["view" => VIEW_DIR."./security/login.php"];
+           return ["view" => VIEW_DIR.".home.php"];
         }
 
 
