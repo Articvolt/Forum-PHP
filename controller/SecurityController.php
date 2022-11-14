@@ -25,9 +25,9 @@
 
 // FONCTION QUI AJOUTE UN UTILISATEUR
         public function addUser() {
+
             // si des valeurs dans le formulaire 
             if (isset($_POST['register'])) {
-
                 // filtres pour la sécurité du formulaire
                 $pseudonyme = filter_input(INPUT_POST, "pseudonyme", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
@@ -46,52 +46,69 @@
                     $checkEmail = $userManager->checkEmail($email);
 
                     // Si il n'y a pas de pseudonyme ou d'email existant
-                    if ($checkPseudonyme == NULL && $checkEmail == NULL) {
+                    if (!$checkPseudonyme && !$checkEmail) {
+                        
                         // hashage du mot de passe
                         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
                         // $data déclarée pour être utilisée dans la fonction add($data) dans manager
-                        $newUser=["pseudonyme"=>$pseudonyme, "email"=>$email, "password"=>$passwordHash];
+                        $newUser=[
+                            "pseudonyme"=>$pseudonyme,
+                            "email"=>$email,
+                            "password"=>$passwordHash
+                        ];
                         
                         // execution de la fonction pré-implemté add($data)
                         $userManager->add($newUser); 
+                        Session::addFlash('success', 'vous êtes bien enregistré !');
                         // redirige vers la page d'accueil
-                        $this->redirectTo('home');                 
-                    
-                    } else Session::addFlash('erreur', 'EMAIL OU PSEUDO DEJA UTILISE');
-                } else Session::addFlash('erreur', 'LES MDP NE CORRESPONDENT PAS');
+                        $this->redirectTo('home');  
+
+                    // message d'erreur si un mail ou le pseudonyme existe déjà
+                    } else Session::addFlash('error', 'utilisateur ou mail déjà enregistré');
+
+                // message d'erreur si les mots de passe ne sont pas identiques
+                } else Session::addFlash('error', 'les mots de passe ne sont pas identiques');
+                
             // retourne la vue de connexion des utilisateurs
-           
-            } return ["view" => VIEW_DIR. ".security/register.php"];
+            } return ["view" => VIEW_DIR. "security/register.php"];
         }
 
 
 // FONCTION QUI CONNECTE A L'UTILISATEUR
         public function login() {
+
             // si il y a des valeurs non nulles
             if(isset($_POST['submit'])) {
+
                 // filtres pour la sécurité du formulaire
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
                 // filtrer un mot de passe peux donner à certains mot de passe une modification lors du filtre et donc le rendre erroné
                 $password = $_POST["password"];
+
                 // si les valeurs existent : 
-                if($email && $password) {
-                    // relie au manager User
-                    $userManager = new UserManager();
-                    
-                    // relie le mot de passe à une adresse mail
-                    $getPassword = $userManager->getPasswordUser($email);
-                    // relie le mail à l'utilisateur
-                    $getUser = $userManager->getUser($email);
-                    
-                    // comparaison (hashage) du mot de passe de la BDD et celui du formulaire
-                    $checkPassword = password_verify($password, $getPassword['password']);
- 
-                    // si le code est bon
-                    if($checkPassword){
-                        // connection à la session de l'utilisateur
-                        Session::setUser($getUser);
+                if($email) {
+                    if($password) {
+                        // relie au manager User
+                        $userManager = new UserManager();
+                        
+                        // relie le mot de passe à une adresse mail
+                        $getPassword = $userManager->getPasswordUser($email);
+                        // relie le mail à l'utilisateur
+                        $getUser = $userManager->getUser($email);
+                        
+                        // comparaison (hashage) du mot de passe de la BDD et celui du formulaire
+                        $checkPassword = password_verify($password, $getPassword['password']);
+     
+                        // si le code est bon
+                        if($checkPassword){
+                            // connection à la session de l'utilisateur
+                            Session::setUser($getUser);
+                            $this->redirectTo('home');
+                        }
                     }
-                }
+                } 
+                
             }
             // renvoie à la page de connexion si le formulaire est vide
             return ["view" => VIEW_DIR . "security/login.php"];

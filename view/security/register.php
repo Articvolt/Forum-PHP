@@ -1,13 +1,8 @@
 <body>
-    <header>
-        <nav>
-            <a href="/exercices/Forum-PHP/"><i class="fa-solid fa-house"></i> Accueil</a>
-        </nav>
-     </header>
     <main>
         <h1>S'inscrire</h1>
     
-        <form action="\exercices/forum-PHP/index.php?ctrl=security&action=addUser" onsubmit="validation()" method="post">
+        <form action="\exercices/forum-PHP/index.php?ctrl=security&action=addUser" method="post">
             <p>
                 <label >
                     pseudonyme : <br>
@@ -38,11 +33,5 @@
         </form>
     </main>
 
-    <!-- message de validation -->
-    <!-- <script>
-        function validation() {
-            alert("votre enregistrement a bien été validé !")
-        }
-    </script> -->
 </body>
 </html>

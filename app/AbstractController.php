@@ -17,7 +17,7 @@
                 $url.= $id ? "&id=".$id : "";
                 // $url.= ".html";
             }
-            else $url = "layout";
+            else $url = "/exercices/forum-PHP/";
             header("Location: $url");
             die();
         }

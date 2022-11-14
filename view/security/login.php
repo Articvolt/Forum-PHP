@@ -1,9 +1,4 @@
 <body>
-    <header>
-        <nav>
-            <a href="/exercices/Forum-PHP/"><i class="fa-solid fa-house"></i>Accueil</a>
-        </nav>
-    </header>
     <main>
         <h1>Se connecter</h1>
         <!-- FORMULAIRE -->
