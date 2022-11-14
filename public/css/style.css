@@ -93,12 +93,13 @@ header {
     width: 100%;
 }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 30px ;
+nav a {
+    color: var(--color-text);
+    text-transform: uppercase;
+    margin: 20px;
+    cursor: pointer;
+    font-weight: bold;
 }
-
 
 #nav-left a {
     color: var(--color-text);
@@ -118,4 +119,12 @@ nav {
     margin: 20px;
     cursor: pointer;
     font-weight: bold;
+}
+
+
+/* NAVBAR LOGIN / REGISTER */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px ;
 }
