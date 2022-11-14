@@ -85,7 +85,7 @@
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
                 // filtrer un mot de passe peux donner à certains mot de passe une modification lors du filtre et donc le rendre erroné
                 $password = $_POST["password"];
-                // var_dump("ok");die;
+                
                 // si les valeurs existent : 
                 if($email) {
                     if($password) {
@@ -101,7 +101,7 @@
                         if($getUser) {
                             // comparaison (hashage) du mot de passe de la BDD et celui du formulaire
                             $checkPassword = password_verify($password, $getPassword['password']);
-         
+        
                             // si le code est bon
                             if($checkPassword){
                                 // connection à la session de l'utilisateur
