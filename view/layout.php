@@ -38,7 +38,7 @@
                             <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
                             <?php
                         }
-                        else{
+                        else {
                             ?>
                             <a href="index.php?ctrl=security&action=login">Connexion</a>
                             <a href="index.php?ctrl=security&action=addUser">Inscription</a>
