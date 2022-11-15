@@ -106,8 +106,8 @@ use Model\Managers\UserManager;
             // filtres pour la sécurité du formulaire
             $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            // renvoi à un user fixe (temporaire)
-            $userId= 1;
+            // renvoi à un user
+            $userId = 1;
             //variable qui relie au manager TOPIC
             $topicManager = new TopicManager();
             $postManager = new PostManager();
@@ -131,8 +131,8 @@ use Model\Managers\UserManager;
         public function ajoutPost($id) {
             // filtres pour la sécurité du formulaire
             $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            // renvoi à un user fixe (temporaire)
-            $userId= 1;
+            // renvoi à un user
+            $userId=  1;
             // variable qui relie au manager POST
             $postManager = new PostManager();
 
@@ -149,10 +149,19 @@ use Model\Managers\UserManager;
 
 
 // EDIT D'UN TOPIC
-
+        public function editTopic() {
+           
+        }
 // EDIT D'UN POST
-
+        public function editPost() {
+                
+        }
 // SUPPRIMER UN TOPIC
-
+        public function deleteTopic() {
+                
+        }
 // SUPPRIMER UN POST
+        public function deletePost() {
+                
+        }
     }
