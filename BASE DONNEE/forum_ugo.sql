@@ -43,9 +43,9 @@ CREATE TABLE IF NOT EXISTS `post` (
   KEY `topic_id` (`topic_id`),
   CONSTRAINT `FK_post_topic` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id_topic`),
   CONSTRAINT `FK_post_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table forum_ugo.post : ~6 rows (environ)
+-- Listage des données de la table forum_ugo.post : ~9 rows (environ)
 /*!40000 ALTER TABLE `post` DISABLE KEYS */;
 INSERT INTO `post` (`id_post`, `datePost`, `text`, `user_id`, `topic_id`) VALUES
 	(1, '2022-11-04 11:28:34', 'sujet classifié', 1, 1),
@@ -53,7 +53,9 @@ INSERT INTO `post` (`id_post`, `datePost`, `text`, `user_id`, `topic_id`) VALUES
 	(3, '2022-11-04 11:30:23', 'sujet classifié décryptage', 1, 2),
 	(4, '2022-11-04 11:31:23', 'sujet classifié décryptage', 1, 1),
 	(5, '2022-11-04 11:28:34', 'sujet classifié', 1, 3),
-	(6, '2022-11-04 11:29:23', 'sujet classifié erroné', 1, 4);
+	(6, '2022-11-04 11:29:23', 'sujet classifié erroné', 1, 4),
+	(7, '2022-11-12 09:41:25', 'sujet d&eacute;classifi&eacute;', 1, 5),
+	(8, '2022-11-15 14:46:06', 'sujet classifi&eacute;', 1, 6);
 /*!40000 ALTER TABLE `post` ENABLE KEYS */;
 
 -- Listage de la structure de la table forum_ugo. topic
@@ -61,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `id_topic` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `dateTopic` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `closed` tinyint(1) DEFAULT NULL,
+  `closed` tinyint(1) NOT NULL DEFAULT '0',
   `category_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id_topic`),
@@ -69,15 +71,17 @@ CREATE TABLE IF NOT EXISTS `topic` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `FK_topic_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id_category`),
   CONSTRAINT `FK_topic_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table forum_ugo.topic : ~4 rows (environ)
+-- Listage des données de la table forum_ugo.topic : ~7 rows (environ)
 /*!40000 ALTER TABLE `topic` DISABLE KEYS */;
 INSERT INTO `topic` (`id_topic`, `title`, `dateTopic`, `closed`, `category_id`, `user_id`) VALUES
-	(1, 'SCP0001', '2022-11-04 11:28:15', 0, 1, 1),
-	(2, 'SCP852', '2022-11-04 11:29:09', 0, 1, 1),
+	(1, 'SCP0001', '2022-11-04 11:28:15', 1, 1, 1),
+	(2, 'SCP852', '2022-11-04 11:29:09', 1, 1, 1),
 	(3, 'level 3', '2022-11-08 09:24:15', 0, 2, 1),
-	(4, 'level 99', '2022-11-08 09:24:33', 0, 2, 1);
+	(4, 'level 99', '2022-11-08 09:24:33', 0, 2, 1),
+	(5, 'SCP788', '2022-11-12 09:41:25', 0, 1, 1),
+	(6, 'SCP002', '2022-11-15 14:46:06', 0, 1, 1);
 /*!40000 ALTER TABLE `topic` ENABLE KEYS */;
 
 -- Listage de la structure de la table forum_ugo. user
@@ -87,14 +91,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `dateCreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `role` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `role` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table forum_ugo.user : ~1 rows (environ)
+-- Listage des données de la table forum_ugo.user : ~3 rows (environ)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id_user`, `pseudonyme`, `email`, `password`, `dateCreate`, `role`) VALUES
-	(1, 'ClassD', 'testmail', 'password', '2022-11-04 11:26:08', 'user');
+	(1, 'ClassD', 'test@mail', '$2y$10$ciknWMIJ4JxJ80/KpHSSUOrbB7X.pQuxtSyW.PdEahBpAgGustiuW', '2022-11-04 11:26:08', 'user'),
+	(12, 'test', 'test@test', '$2y$10$ciknWMIJ4JxJ80/KpHSSUOrbB7X.pQuxtSyW.PdEahBpAgGustiuW', '2022-11-14 22:25:04', 'user'),
+	(13, 'admin', 'admin@admin', '$2y$10$ZM.gLLSIfy65qM6BWg8CUuv1hF5TyIkH3a0Gim3ujdFb60IT/FT/a', '2022-11-15 11:16:55', 'admin');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
