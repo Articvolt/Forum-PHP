@@ -130,12 +130,22 @@
         public function logout() {
         
             if (isset($_SESSION['user'])) {
-
+            // remplace la session de l'user par une session vide
             $_SESSION['user'] = null;
-            // retourne sur la page d'accueil
+            //message qui affirme la déconnexion
             Session::addFlash('success', 'Vous êtes bien déconnecté');
+            // retourne sur la page d'accueil
             return ["view" => VIEW_DIR . "home.php"];
+            }
         }
-    }
 
+// FONCTION AFFICHAGE PROFIL 
+        public function profil() {
+
+        }
+
+// FONCTION AFFICHAGE LISTE UTILISATEUR (ADMIN)
+        public function listUsers() {
+            
+        }
     }

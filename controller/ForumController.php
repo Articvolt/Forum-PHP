@@ -146,4 +146,13 @@ use Model\Managers\UserManager;
                 $this->redirectTo("forum","listPostsByIdTopic",$id);
             }
         }
+
+
+// EDIT D'UN TOPIC
+
+// EDIT D'UN POST
+
+// SUPPRIMER UN TOPIC
+
+// SUPPRIMER UN POST
     }

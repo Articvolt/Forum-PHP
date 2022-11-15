@@ -105,8 +105,8 @@ public function getPassword()
         }
 
 // FONCTION QUI VERIFIE SI LE USER EST UN ADMIN OU UN USER
-        public function hasRole($role){
-                if($this->role == $role){
+        public function hasRole($role) {
+                if($this->role == $role) {
                         return $this->role;
                 }
                 else 
