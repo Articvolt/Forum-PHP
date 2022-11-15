@@ -126,4 +126,16 @@
             return ["view" => VIEW_DIR . "security/login.php"];
         }
 
+// FONCTION QUI DECONNECTE
+        public function logout() {
+        
+            if (isset($_SESSION['user'])) {
+
+            $_SESSION['user'] = null;
+            // retourne sur la page d'accueil
+            Session::addFlash('success', 'Vous êtes bien déconnecté');
+            return ["view" => VIEW_DIR . "home.php"];
+        }
+    }
+
     }

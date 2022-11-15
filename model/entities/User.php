@@ -104,6 +104,15 @@ public function getPassword()
             return $this;
         }
 
+// FONCTION QUI VERIFIE SI LE USER EST UN ADMIN OU UN USER
+        public function hasRole($role){
+                if($this->role == $role){
+                        return $this->role;
+                }
+                else 
+                        return false;
+        }
+
         public function __toString()
         {
                 return $this->pseudonyme;
