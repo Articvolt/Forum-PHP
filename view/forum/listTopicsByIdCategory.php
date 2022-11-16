@@ -29,11 +29,11 @@ if(!$topics) {
                 <?php
                     if($topic->getClosed() == 1) {
                 ?>
-                    <i class="fa-solid fa-lock"></i>
+                   <a href="index.php?ctrl=forum&action=unlockTopic&id=<?=$topic->getId()?>"><i class="fa-solid fa-lock"></i></a> 
                 <?php
                     } else { 
                 ?> 
-                    <i class="fa-solid fa-unlock"></i>
+                   <a href="index.php?ctrl=forum&action=lockTopic&id=<?=$topic->getId()?>"><i class="fa-solid fa-unlock"></i></a> 
                 <?php
                     }  
                 ?>

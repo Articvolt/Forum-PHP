@@ -5,6 +5,18 @@ $topic = $result["data"]['topic'];
 
 <h1>
     liste des messages dans le sujet <?= $topic ?> 
+    <!-- affiche un icone "ouvert" ou "fermé" selon si le sujet est ouvert ou non -->
+    <?php
+        if($topic->getClosed() == 1) {
+    ?>
+        <a href="index.php?ctrl=forum&action=unlockTopic&id=<?=$topic->getId()?>"><i class="fa-solid fa-lock"></i></a> 
+    <?php
+        } else { 
+    ?> 
+        <a href="index.php?ctrl=forum&action=lockTopic&id=<?=$topic->getId()?>"><i class="fa-solid fa-unlock"></i></a> 
+    <?php
+        }  
+    ?>
 </h1>
 
 <table class="listTable">

@@ -20,14 +20,17 @@
             parent::connect();
         }   
         
-        public function editLabel($label, $id) {
-            parent::connect();
-            $sql= ["
-            UPDATE ".$this->tableName."
+// FONCTION POUR UPDATE LE LABEL
+        public function editLabel($id, $label) {
+           
+            // requête SQL
+            $sql = "
+            UPDATE category
             SET label = :label
-            WHERE category_id = :id
-            "];
+            WHERE id_category = :id
+            ";
 
-            return($this->getSingleScalarResult(DAO::select($sql,['label' => $label],['id' => $id])));
+            // relie a la fonction préfaite dans DAO qui update la base de données
+            DAO::update($sql, ["id"=>$id,"label"=>$label]);
         }
     }

@@ -152,17 +152,16 @@ use Model\Managers\UserManager;
         public function editCategory($id) {
             $categoryManager = new CategoryManager();
             
-            // filtres pour la sécurité du formaulaire
+            // filtres pour la sécurité du formulaire
             $label = filter_input(INPUT_POST, "label", FILTER_SANITIZE_SPECIAL_CHARS);
-            // renvoi à un user
-            $userId= 1;
 
-            // if($label) {
-            //     // data déclarée du nouveau label avec l'ID de la catégorie
-            //     $editCategory=["label"=>$label],$id;
-            //     // Utilisation de la fonction editLabel()
-            //     $categoryManager->editLabel($editCategory);
-            // }
+            // si le label existe
+            if($label) {
+            
+                // Utilisation de la fonction editLabel()
+                $categoryManager->editLabel($id, $label);
+                $this->redirectTo("forum","listCategories");
+            }
 
             return [
                 "view" => VIEW_DIR."forum/editCategory.php",
@@ -174,11 +173,62 @@ use Model\Managers\UserManager;
 // EDIT D'UN TOPIC
         public function editTopic($id) {
            $topicManager = new TopicManager();
+           $topic = $topicManager->findOneById($id);
+
+           // filtres pour la sécurité du formulaire
+            $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            
+            if($title) {
+                $topicManager->editTopic($id,$title);
+                $this->redirectTo("forum","listTopicsByIdCategory",$topic->getCategory()->getId());
+            }
 
            return [
             "view" => VIEW_DIR."forum/editTopic.php",
             "data" => ["topic" => $topicManager->findOneById($id)]
             ];
+        }
+
+
+// POUVOIR LOCK UN TOPIC
+        public function lockTopic($id) {
+            $topicManager = new TopicManager();
+            $topic = $topicManager->findOneById($id);
+
+            if($_SESSION['user']) {
+                $userId = $_SESSION['user']->getId();
+                if($userId==$topic->getUser()->getId()) {
+                    $topicManager->lockTopic($id);
+                    $this->redirectTo("forum","listTopicsByIdCategory", $topic->getCategory()->getId());
+                } else {
+                    Session::addFlash("error","actions manquantes !");
+                    $this->redirectTo("forum","listPostsByIdTopics", $id);
+                }
+
+            } else {
+                Session::addFlash("error","vous n'êtes pas autorisé à modifier ce sujet");
+                    $this->redirectTo("forum","listTopicsByIdCategory", $topic->getCategory()->getId());
+            }
+        }
+// POUVOIR UNLOCK UN TOPIC
+        public function unlockTopic($id) {
+            $topicManager = new TopicManager();
+            $topic = $topicManager->findOneById($id);
+
+            if($_SESSION['user']) {
+                $userId = $_SESSION['user']->getId();
+                if($userId==$topic->getUser()->getId()) {
+                    $topicManager->unlockTopic($id);
+                    $this->redirectTo("forum","listTopicsByIdCategory", $topic->getCategory()->getId());
+                } else {
+                    Session::addFlash('error','actions manquantes !');
+                    $this->redirectTo("forum","listPostsByIdTopics", $id);
+                }
+
+            } else {
+                Session::addFlash("error","vous n'êtes pas autorisé à modifier ce sujet");
+                    $this->redirectTo("forum","listTopicsByIdCategory", $topic->getCategory()->getId());
+            }
         }
 
 
