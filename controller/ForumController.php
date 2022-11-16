@@ -148,6 +148,29 @@ use Model\Managers\UserManager;
         }
 
 
+// EDIT D'UNE CATEGORY
+        public function editCategory($id) {
+            $categoryManager = new CategoryManager();
+            
+            // filtres pour la sécurité du formaulaire
+            $label = filter_input(INPUT_POST, "label", FILTER_SANITIZE_SPECIAL_CHARS);
+            // renvoi à un user
+            $userId= 1;
+
+            // if($label) {
+            //     // data déclarée du nouveau label avec l'ID de la catégorie
+            //     $editCategory=["label"=>$label],$id;
+            //     // Utilisation de la fonction editLabel()
+            //     $categoryManager->editLabel($editCategory);
+            // }
+
+            return [
+                "view" => VIEW_DIR."forum/editCategory.php",
+                "data" => ["category" => $categoryManager->findOneById($id)]
+            ];
+        }
+        
+
 // EDIT D'UN TOPIC
         public function editTopic($id) {
            $topicManager = new TopicManager();
@@ -155,20 +178,10 @@ use Model\Managers\UserManager;
            return [
             "view" => VIEW_DIR."forum/editTopic.php",
             "data" => ["topic" => $topicManager->findOneById($id)]
-        ];
-
+            ];
         }
 
-// EDIT D'UN TOPIC
-        public function editCategory($id) {
-           $categoryManager = new CategoryManager();
 
-           return [
-            "view" => VIEW_DIR."forum/editCategory.php",
-            "data" => ["category" => $categoryManager->findOneById($id)]
-        ];
-
-        }
 // EDIT D'UN POST
         public function editPost($id) {
             $postManager = new PostManager();
@@ -179,15 +192,35 @@ use Model\Managers\UserManager;
                 "data" => ["post" => $postManager->findOneById($id)]
             ];
         }
+
+
 // SUPPRIMER UN TOPIC
-        public function deleteTopic() {
+        public function deleteCategory($id) {
+            $categoryManager = new CategoryManager();
+
+            // utilisation de la fonction delete() dans App/manager
+            $categoryManager->delete($id);
+            $this->redirectTo("forum","listCategories");
+        }
+
+
+// SUPPRIMER UN TOPIC
+        public function deleteTopic($id) {
             $topicManager = new TopicManager();
 
+
+            // utilisation de la fonction delete() dans App/manager
+            $topicManager->delete($id);
+            $this->redirectTo("forum","listTopicsByIdCategory");
         }
+
+
 // SUPPRIMER UN POST
-        public function deletePost() {
+        public function deletePost($id) {
             $postManager = new PostManager();
 
-
+            // utilisation de la fonction delete() dans App/manager
+            $postManager->delete($id);
+            $this->redirectTo("forum","listPostsByIdTopic");
         }
     }

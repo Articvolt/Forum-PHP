@@ -5,18 +5,6 @@ $topic = $result["data"]['topic'];
 
 <h1>
     liste des messages dans le sujet <?= $topic ?> 
-    <!-- affiche un icone "ouvert" ou "fermé" selon si le sujet est ouvert ou non -->
-    <?php
-        if($topic->getClosed() == 1) {
-    ?>
-            <i class="fa-solid fa-lock"></i>
-    <?php
-        } else { 
-    ?> 
-            <i class="fa-solid fa-unlock"></i>
-    <?php
-        }  
-    ?>
 </h1>
 
 <table class="listTable">
@@ -44,7 +32,7 @@ foreach($posts as $post){
                 <i class="fa-solid fa-pen-to-square"></i>
             </a>
             <!-- supprime le post -->
-            <a href="">
+            <a href="index.php?ctrl=forum&action=deletePost&id=<?=$post->getId()?>">
                 <i class="fa-solid fa-trash"></i>
             </a>
         </td>

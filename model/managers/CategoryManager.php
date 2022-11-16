@@ -18,5 +18,16 @@
         // constuct structuré par la classe parent "MANAGER" et connecté à la base de donnée.
         public function __construct() {
             parent::connect();
-        }    
+        }   
+        
+        public function editLabel($label, $id) {
+            parent::connect();
+            $sql= ["
+            UPDATE ".$this->tableName."
+            SET label = :label
+            WHERE category_id = :id
+            "];
+
+            return($this->getSingleScalarResult(DAO::select($sql,['label' => $label],['id' => $id])));
+        }
     }

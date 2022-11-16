@@ -73,7 +73,7 @@
             }
         }
         
-// FONCTION QUI SUPPRIME UN LIGNE DE DONNEES DANS UNE TABLE
+// FONCTION QUI SUPPRIME UNE LIGNE DE DONNEES DANS UNE TABLE
         public function delete($id) {
             $sql = "DELETE FROM ".$this->tableName."
                     WHERE id_".$this->tableName." = :id
@@ -97,6 +97,7 @@
             else return null;
         }
 
+// FONCTION QUI AFFICHE UN OU PAS DE RESULTAT
         protected function getOneOrNullResult($row, $class) {
 
             if($row != null) {
@@ -105,6 +106,7 @@
             return false;
         }
 
+// FONCTION QUI RECUPERE QU'UNE SEULE VALEUR
         protected function getSingleScalarResult($row) {
 
             if($row != null) {
