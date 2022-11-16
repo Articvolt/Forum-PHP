@@ -149,19 +149,45 @@ use Model\Managers\UserManager;
 
 
 // EDIT D'UN TOPIC
-        public function editTopic() {
+        public function editTopic($id) {
            $topicManager = new TopicManager();
+
+           return [
+            "view" => VIEW_DIR."forum/editTopic.php",
+            "data" => ["topic" => $topicManager->findOneById($id)]
+        ];
+
+        }
+
+// EDIT D'UN TOPIC
+        public function editCategory($id) {
+           $categoryManager = new CategoryManager();
+
+           return [
+            "view" => VIEW_DIR."forum/editCategory.php",
+            "data" => ["category" => $categoryManager->findOneById($id)]
+        ];
+
         }
 // EDIT D'UN POST
-        public function editPost() {
+        public function editPost($id) {
             $postManager = new PostManager();
+
+            // retourne la vue "editPost" et utilise les données affichées par la fonction findOneById() dans le formulaire
+            return [
+                "view" => VIEW_DIR."forum/editPost.php",
+                "data" => ["post" => $postManager->findOneById($id)]
+            ];
         }
 // SUPPRIMER UN TOPIC
         public function deleteTopic() {
-                
+            $topicManager = new TopicManager();
+
         }
 // SUPPRIMER UN POST
         public function deletePost() {
-                
+            $postManager = new PostManager();
+
+
         }
     }

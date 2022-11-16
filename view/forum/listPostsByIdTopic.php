@@ -39,8 +39,14 @@ foreach($posts as $post){
         <td><?= $post->getDatePost() ?></td>
         <!-- si l'utilisateur est le propriétaire  -->
         <td>
-            <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
-            <a href=""><i class="fa-solid fa-trash"></i></a>
+            <!-- modifie le post -->
+            <a href="index.php?ctrl=forum&action=editPost&id=<?=$post->getId()?>">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <!-- supprime le post -->
+            <a href="">
+                <i class="fa-solid fa-trash"></i>
+            </a>
         </td>
     </tr>      
 <?php

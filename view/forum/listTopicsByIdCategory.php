@@ -51,8 +51,14 @@ if(!$topics) {
             </td>
             <!-- si l'utilisateur est le propriétaire  -->
             <td>
-                <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
-                <a href=""><i class="fa-solid fa-trash"></i></a>
+                <!-- modifie le topic -->
+                <a href="index.php?ctrl=forum&action=editTopic&id=<?=$topic->getId()?>">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+                <!-- supprime le topic -->
+                <a href="">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
             </td>
         </tr>
         <?php
