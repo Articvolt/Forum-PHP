@@ -36,6 +36,8 @@
                             ?>
                             <a href="index.php?ctrl=security&action=profil"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
                             <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
+                            <a href="index.php?ctrl=forum&action=listCategories">la liste des categories</a>
+
                             <?php
                         }
                         else {

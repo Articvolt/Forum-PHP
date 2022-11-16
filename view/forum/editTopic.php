@@ -1,13 +1,13 @@
 <?php
-    $topic = $result["data"]['topic'];  
-    $idTopic = $topic->getId();
+
 ?>
-    
-<form action="index.php?ctrl=forum&action=&id=<?= $idTopic ?>" method="post">
-    <p>
-        <label>Nouveau titre : 
-            <input type="text" name="titre" value=<?=$topic->getTitle()?>>
-        </label>
-    </p>
-    <input type="submit" name="editTopic" value="Valider">
+
+<h1>Modification du sujet</h1>
+
+<form method="post">
+    <label>
+        modifier le titre :
+        <input type="text" name="title" placeholder="">
+    </label>
+    <input type="submit" value="enregistrer les modifications">
 </form>

@@ -25,6 +25,8 @@ $topic = $result["data"]['topic'];
             <th>message</th>
             <th>auteur</th>
             <th>date</th>
+            <!-- si l'utilisateur est le propriétaire  -->
+            <th>MODIFICATIONS</th>
         </tr>
     </thead>
     <tbody>
@@ -35,6 +37,11 @@ foreach($posts as $post){
         <td><?= $post->getText() ?></td>
         <td> <?= $post->getUser() ?> </td>
         <td><?= $post->getDatePost() ?></td>
+        <!-- si l'utilisateur est le propriétaire  -->
+        <td>
+            <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
+            <a href=""><i class="fa-solid fa-trash"></i></a>
+        </td>
     </tr>      
 <?php
     } 

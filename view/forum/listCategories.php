@@ -7,6 +7,8 @@ $categories = $result["data"]['categories'];
     <thead>
         <tr>
             <th>TITRE</th>
+            <!-- si l'utilisateur est le propriétaire  -->
+            <th>MODIFICATIONS</th>
         </tr>
     </thead>
     <tbody>
@@ -16,6 +18,11 @@ $categories = $result["data"]['categories'];
                 <tr>
                     <td>
                     <a href="index.php?ctrl=forum&action=listTopicsByIdCategory&id=<?=$category->getId()?>"><?=$category->getLabel()?></a>
+                    </td>
+                    <!-- si l'utilisateur est le propriétaire  -->
+                    <td>
+                    <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href=""><i class="fa-solid fa-trash"></i></a>
                     </td>
                 </tr>
             <?php

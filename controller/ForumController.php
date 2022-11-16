@@ -150,11 +150,11 @@ use Model\Managers\UserManager;
 
 // EDIT D'UN TOPIC
         public function editTopic() {
-           
+           $topicManager = new TopicManager();
         }
 // EDIT D'UN POST
         public function editPost() {
-                
+            $postManager = new PostManager();
         }
 // SUPPRIMER UN TOPIC
         public function deleteTopic() {

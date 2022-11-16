@@ -12,6 +12,8 @@ $category = $result["data"]['category'];
             <th>SUJET</th>
             <th>AUTEUR</th>
             <th>DATE</th>
+            <!-- si l'utilisateur est le propriétaire  -->
+            <th>MODIFICATIONS</th>
         </tr>
     </thead>
     <tbody>
@@ -46,6 +48,11 @@ if(!$topics) {
             </td>
             <td>
             <?= $topic->getDateTopic() ?>
+            </td>
+            <!-- si l'utilisateur est le propriétaire  -->
+            <td>
+                <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href=""><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
         <?php
