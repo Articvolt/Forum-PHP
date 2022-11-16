@@ -47,5 +47,21 @@
             }
   
         }
+
+
+// FONCTION QUI MODIFIE UN POST
+        public function editPost($id, $text) {
+            parent::connect();
+
+             // requête SQL
+             $sql = "
+             UPDATE post
+             SET text = :text
+             WHERE id_post = :id
+             ";
+ 
+             // relie a la fonction préfaite dans DAO qui update la base de données
+             DAO::update($sql, ["id"=>$id,"title"=>$text]);
+        }
     }
     

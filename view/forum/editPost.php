@@ -1,5 +1,5 @@
 <?php
-$post = $result["data"]['post'];
+$post = ($result["data"]['post']);
 ?>
 
 <h1>Modification du message</h1>

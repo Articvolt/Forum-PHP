@@ -195,14 +195,17 @@ use Model\Managers\UserManager;
             $topicManager = new TopicManager();
             $topic = $topicManager->findOneById($id);
 
+            // si la session est sous le role utilisateur
             if($_SESSION['user']) {
+                // on récupère le user lié au topic
                 $userId = $_SESSION['user']->getId();
+                // si le user du topic est le même que celui de la session alors
                 if($userId==$topic->getUser()->getId()) {
                     $topicManager->lockTopic($id);
                     $this->redirectTo("forum","listTopicsByIdCategory", $topic->getCategory()->getId());
                 } else {
-                    Session::addFlash("error","actions manquantes !");
-                    $this->redirectTo("forum","listPostsByIdTopics", $id);
+                    Session::addFlash("error","vous n'êtes pas autorisé à modifier ce sujet");
+                    $this->redirectTo("forum","listTopicsByIdCategory", $topic->getCategory()->getId());
                 }
 
             } else {
@@ -215,19 +218,22 @@ use Model\Managers\UserManager;
             $topicManager = new TopicManager();
             $topic = $topicManager->findOneById($id);
 
+            // si la session est sous le role utilisateur
             if($_SESSION['user']) {
+                // on récupère le user lié au topic
                 $userId = $_SESSION['user']->getId();
+                // si le user du topic est le même que celui de la session alors
                 if($userId==$topic->getUser()->getId()) {
                     $topicManager->unlockTopic($id);
                     $this->redirectTo("forum","listTopicsByIdCategory", $topic->getCategory()->getId());
                 } else {
-                    Session::addFlash('error','actions manquantes !');
-                    $this->redirectTo("forum","listPostsByIdTopics", $id);
+                    Session::addFlash("error","vous n'êtes pas autorisé à modifier ce sujet");
+                    $this->redirectTo("forum","listTopicsByIdCategory", $topic->getCategory()->getId());
                 }
 
             } else {
                 Session::addFlash("error","vous n'êtes pas autorisé à modifier ce sujet");
-                    $this->redirectTo("forum","listTopicsByIdCategory", $topic->getCategory()->getId());
+                $this->redirectTo("forum","listTopicsByIdCategory", $topic->getCategory()->getId());
             }
         }
 
@@ -235,8 +241,31 @@ use Model\Managers\UserManager;
 // EDIT D'UN POST
         public function editPost($id) {
             $postManager = new PostManager();
+            $post = $postManager->findOneById($id);
 
-            // retourne la vue "editPost" et utilise les données affichées par la fonction findOneById() dans le formulaire
+            $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // si la session est sous le role utilisateur
+            if($_SESSION['user']) {
+                // on récupère le user lié au post
+                $userId = $_SESSION['user']->getId();
+                // si le user du post est le même que celui de la session alors
+                if($userId==$post->getUser()->getId()) {
+                    if($text) {
+                        $postManager->editPost($id,$text);
+                        $this->redirectTo("forum","listPostsByIdTopic", $post->getTopic()->getId());
+                    }
+                } else {
+                    Session::addFlash("error","vous n'êtes pas autorisé à modifier ce message");
+                    $this->redirectTo("forum","listPostsByIdTopic", $post->getTopic()->getId());
+                }
+
+            // si pas connecté à la session    
+            } else {
+                Session::addFlash("error","vous n'êtes pas autorisé à modifier ce sujet");
+                $this->redirectTo("forum","listPostsByIdTopic", $post->getTopic()->getId());
+            }
+
+                // retourne la vue "editPost" et utilise les données affichées par la fonction findOneById() dans le formulaire
             return [
                 "view" => VIEW_DIR."forum/editPost.php",
                 "data" => ["post" => $postManager->findOneById($id)]
