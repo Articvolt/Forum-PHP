@@ -3,6 +3,7 @@
     namespace Controller;
 
     //relie à APP qui automatise le forum
+    use App\DAO;
     use App\Session;
     use App\AbstractController;
     use App\ControllerInterface;
@@ -11,7 +12,7 @@
     use Model\Managers\TopicManager;
     use Model\Managers\PostManager;
     use Model\Managers\CategoryManager;
-use Model\Managers\UserManager;
+    use Model\Managers\UserManager;
 
     // la classe "ForumController" va hériter à toutes les méthodes et propriétés de la classe "AbstractController"
     // l'opérateur "implement" implémente les méthodes(fonctions) de l'interface "ContollerInterface"
@@ -169,24 +170,56 @@ use Model\Managers\UserManager;
             ];
         }
         
+// CONNEXION AU FORMULAIRE EDIT TOPIC
+        public function editTopicForm($id) {
+            $topicManager = new TopicManager();
+            $topic = $topicManager->findOneById($id);
+
+
+            return [
+                "view" => VIEW_DIR."forum/editTopic.php",
+                "data" => ["topic" => $topicManager->findOneById($id)]
+            ];
+        }
+
 
 // EDIT D'UN TOPIC
         public function editTopic($id) {
            $topicManager = new TopicManager();
            $topic = $topicManager->findOneById($id);
-
-           // filtres pour la sécurité du formulaire
-            $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+           
             
-            if($title) {
-                $topicManager->editTopic($id,$title);
-                $this->redirectTo("forum","listTopicsByIdCategory",$topic->getCategory()->getId());
-            }
+            if(\App\Session::getUser()) {
+            // on récupère le user lié au topic
+                $userId =\App\Session::getUser()->getId();
 
-           return [
-            "view" => VIEW_DIR."forum/editTopic.php",
-            "data" => ["topic" => $topicManager->findOneById($id)]
-            ];
+                if($userId==$topic->getUser()->getId()) {
+                    // filtres pour la sécurité du formulaire
+                    $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    
+                    
+                    if($title) {
+                        //injecte la variable dans la requête SQL UPDATE
+                        $topicManager->editTopic($id,$title);
+                        $this->redirectTo("forum","listTopicsByIdCategory",$topic->getCategory()->getId());
+
+                    // si il n'y a pas de données dans le formulaire envoyé, afficher le message d'erreur
+                    } else {
+                        Session::addFlash("error","pas de titre");
+                        $this->redirectTo("forum","listTopicsByIdCategory", $topic->getCategory()->getId());
+                    }
+                    
+                // si ce n'est pas le bon user, afficher le message d'erreur                   
+                } else {
+                    Session::addFlash("error","vous n'êtes pas autorisé à modifier ce sujet");
+                    $this->redirectTo("forum","listTopicsByIdCategory", $topic->getCategory()->getId());
+                }
+                
+            // si vous n'êtes pas connecter, afficher le message d'erreur   
+            } else {
+                Session::addFlash("error","veuillez vous connecter");
+                $this->redirectTo("forum","listTopicsByIdCategory", $topic->getCategory()->getId());
+            }            
         }
 
 
